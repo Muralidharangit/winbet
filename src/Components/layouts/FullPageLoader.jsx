@@ -18,7 +18,7 @@ const FullPageLoader = ({ message = "Loading, please wait..." }) => {
         fontWeight: "bold",
       }}
     >
-      <img src="assets/img/fav.png" alt="loader" srcSet="" width="50%" />
+      <img src="assets/img/fav.png" alt="loader" srcSet="" width="10%" />
       <p className="mt-3">{message}</p>
     </div>
   );

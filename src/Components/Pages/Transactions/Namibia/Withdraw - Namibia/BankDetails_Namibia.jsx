@@ -1013,7 +1013,7 @@ const BankDetails = ({
                                 <h6>{bank.account_number || "N/A"}</h6>
                               </div>
                               <div>
-                                <p className="mb-0 text-grey">IFSC Code</p>
+                                <p className="mb-0 text-grey">Branch Code</p>
                                 <h6>{bank.ifsc_code || "N/A"}</h6>
                               </div>
                             </>
