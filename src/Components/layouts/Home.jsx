@@ -2306,13 +2306,13 @@ const LUCKY6_GAME = {
                               />{" "}
                               <h5 className="m-0 ms-2">Bonus </h5>
                             </div>
-                            <Link to="/bonus">
+                            {/* <Link to="/bonus">
                               <div>
                                 <span className="text-white fs-13 fw-500 right_heading">
                                   All <i className="ri-arrow-right-s-line" />
                                 </span>
                               </div>
-                            </Link>
+                            </Link> */}
                           </div>
 
                           <div className="row px-0">

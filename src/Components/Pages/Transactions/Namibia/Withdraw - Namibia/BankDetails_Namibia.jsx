@@ -489,7 +489,7 @@ const BankDetails = ({
         }
       } finally {
         setSubmitting(false); // always re-enable the button
-        console.log("[EDIT BANK] setSubmitting(false)");
+        // console.log("[EDIT BANK] setSubmitting(false)");
       }
     },
   });
@@ -1222,7 +1222,7 @@ const BankDetails = ({
                     onChange={updateFormik.handleChange}
                     onBlur={updateFormik.handleBlur}
                   />
-                  <label className="label">IFSC</label>
+                  <label className="label">Branch Code</label>
                   {updateFormik.touched.ifsc_code &&
                     updateFormik.errors.ifsc_code && (
                       <p className="text-danger">
