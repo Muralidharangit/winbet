@@ -192,7 +192,7 @@ const WithdrawAmountRequest = ({ amount, bankId }) => {
                 Account Number: <strong>{bankDetails.account_number}</strong>
               </p>
               <p className="mb-0 text-grey">
-                IFSC Code: <strong>{bankDetails.ifsc_code}</strong>
+                Branch Code: <strong>{bankDetails.ifsc_code}</strong>
               </p>
             </div>
           )}

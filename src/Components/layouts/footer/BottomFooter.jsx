@@ -10,6 +10,8 @@ const paymentImages = [
   "/assets/img/footer_icon/1 (2).jpg", // FNB USSD
   "/assets/img/footer_icon/1 (3).jpg", // FNB App
   "/assets/img/footer_icon/1 (4).jpg", // Windhoek Easy Wallet
+  "/assets/img/footer_icon/1 (4).png", // Windhoek Easy Wallet
+  "/assets/img/footer_icon/1 (5).png", // Windhoek Easy Wallet
 ];
 
 const BottomFooter = () => {

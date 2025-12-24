@@ -140,7 +140,7 @@ const SelectAmount = ({ amount, setAmount, token, onValidityChange }) => {
 
           {/* Static quick-picks */}
           <div className="recharge-amount-container button">
-            {[50, 100, 500, 1000, 5000].map((amt) => (
+            {[500, 1500, 2000, 5000, 10000].map((amt) => (
               <button
                 key={amt}
                 type="button"

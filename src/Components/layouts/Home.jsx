@@ -6,7 +6,7 @@ import BottomFooter from "./footer/BottomFooter";
 import Footer from "./footer/Footer";
 // import OffCanvas from "../offcanvapages/Offcanva";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import routes from "../routes/route";
+// import routes from "../routes/route";
 import BottomProvider from "./footer/BottomProvider";
 import BASE_URL from "../../API/api";
 import { toast, ToastContainer } from "react-toastify";
@@ -15,7 +15,7 @@ import AuthContext from "../../Auth/AuthContext";
 import FullPageLoader from "./FullPageLoader";
 import axiosInstance from "../../API/axiosConfig";
 
-import { Images } from "./Header/constants/images";
+// import { Images } from "./Header/constants/images";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -23,18 +23,18 @@ import {
   fetchDiceGames,
   fetchProviderList,
   fetchSmartSoftGames,
-  getIsMobileParam,
+  // getIsMobileParam,
 } from "../../hooks/homePageApi";
 import { useQuery } from "@tanstack/react-query";
 import Sidebar from "./Header/Sidebar";
-import { APP_NAME, CURRENCY_SYMBOL } from "../../constants";
+import {CURRENCY_SYMBOL } from "../../constants";
 
 function Home() {
   const { isLoading } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [result, setResult] = useState(null);
   // State for all games
-  const [games, setGames] = useState([]);
+  // const [games, setGames] = useState([]);
   const [selectedGameUrl, setSelectedGameUrl] = useState(null);
   const [showFullScreenGame, setShowFullScreenGame] = useState(false);
   const [isLaunchingGame, setIsLaunchingGame] = useState(false);
@@ -46,15 +46,15 @@ function Home() {
   // const [slotGames, setslotGames] = useState([]);
 
   // State for dice games
-  const [isLoadings, setIsLoadings] = useState(true); // Correct placement
+  // const [isLoadings, setIsLoadings] = useState(true); // Correct placement
 
   // const [diceGames, setDiceGames] = useState([]);
-  const [isLoadingDice, setIsLoadingDice] = useState(true); // ✅ add this
-  const [slotGames, setslotGames] = useState([]);
+  // const [isLoadingDice, setIsLoadingDice] = useState(true); // ✅ add this
+  // const [slotGames, setslotGames] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
   // const [providerlist, setproviderlist] = useState([]);
-  const [isLoadingSlot, setIsLoadingSlot] = useState(true); // New loading state
+  // const [isLoadingSlot, setIsLoadingSlot] = useState(true); // New loading state
   const iframeRef = useRef(null);
 
   const location = useLocation();
@@ -66,8 +66,6 @@ function Home() {
   const {
     data: diceGames = [],
     isLoadingDiceGame,
-    isError,
-    error,
   } = useQuery({
     queryKey: ["diceGames"],
     queryFn: fetchDiceGames,
@@ -345,66 +343,66 @@ function Home() {
   // }, []);
 
   // game URL Iframe Opens here
-  const handleGameClickTurbo = async (game) => {
-    // console.log(game);
-    if (!game.key) {
-      toast.error("Missing game info.");
-      return;
-    }
+  // const handleGameClickTurbo = async (game) => {
+  //   // console.log(game);
+  //   if (!game.key) {
+  //     toast.error("Missing game info.");
+  //     return;
+  //   }
 
-    // console.log(game, "testing....................");
+  //   // console.log(game, "testing....................");
 
-    const token = localStorage.getItem("token");
-    try {
-      setIsLaunchingGame(true); // ✅ Show loading screen
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     setIsLaunchingGame(true); // ✅ Show loading screen
 
-      const response = await axios.get(`${BASE_URL}/player/turbo/${game.key}`, {
-        // params: { return_url: "https://jiboomba.in/games" },
-        params: {
-          return_url: window.location.origin,
-          has_lobby: game.key,
-          has_tables: game.key,
-        }, // 👈 dynamic base URL },
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  //     const response = await axios.get(`${BASE_URL}/player/turbo/${game.key}`, {
+  //       // params: { return_url: "https://jiboomba.in/games" },
+  //       params: {
+  //         return_url: window.location.origin,
+  //         has_lobby: game.key,
+  //         has_tables: game.key,
+  //       }, // 👈 dynamic base URL },
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
 
-      // console.log(response, "response.................");
+  //     // console.log(response, "response.................");
 
-      const gameUrl = response.data.gameUrl || response.data?.game_url;
+  //     const gameUrl = response.data.gameUrl || response.data?.game_url;
 
-      // console.log(gameUrl, "gameUrl..............");
+  //     // console.log(gameUrl, "gameUrl..............");
 
-      if (gameUrl) {
-        setSelectedGameUrl(gameUrl);
-        setShowFullScreenGame(true);
-      } else {
-        toast.error("Failed to get game URL.");
-      }
-    } catch (error) {
-      setIsLaunchingGame(false);
+  //     if (gameUrl) {
+  //       setSelectedGameUrl(gameUrl);
+  //       setShowFullScreenGame(true);
+  //     } else {
+  //       toast.error("Failed to get game URL.");
+  //     }
+  //   } catch (error) {
+  //     setIsLaunchingGame(false);
 
-      // Check for 401 or unauthenticated message
-      const errMsg = error.response?.data?.message;
+  //     // Check for 401 or unauthenticated message
+  //     const errMsg = error.response?.data?.message;
 
-      if (errMsg === "Unauthenticated." || error.response?.status === 401) {
-        toast.error("Please login to jump into the Game World! 🎮🚀", {
-          toastId: "unauthenticated",
-        });
+  //     if (errMsg === "Unauthenticated." || error.response?.status === 401) {
+  //       toast.error("Please login to jump into the Game World! 🎮🚀", {
+  //         toastId: "unauthenticated",
+  //       });
 
-        // Clear token if any
-        localStorage.removeItem("token");
+  //       // Clear token if any
+  //       localStorage.removeItem("token");
 
-        // Redirect after a short delay (e.g., 2 seconds)
-        setTimeout(() => {
-          navigate("/login");
-        }, 8000);
-        return;
-      }
+  //       // Redirect after a short delay (e.g., 2 seconds)
+  //       setTimeout(() => {
+  //         navigate("/login");
+  //       }, 8000);
+  //       return;
+  //     }
 
-      // console.error("Error launching game:", error);
-      toast.error("Game launch failed. Try again later.");
-    }
-  };
+  //     // console.error("Error launching game:", error);
+  //     toast.error("Game launch failed. Try again later.");
+  //   }
+  // };
 
   // Spribe Games Effect
   // Declare the state for Spribe Games
@@ -437,56 +435,56 @@ function Home() {
   // }, []);
 
   // game URL Iframe Opens here
-  const handleGameClickSpribe = async (game) => {
-    if (!game) {
-      toast.error("Missing game info.");
-      return;
-    }
-    // console.log(game, "game testing");
+  // const handleGameClickSpribe = async (game) => {
+  //   if (!game) {
+  //     toast.error("Missing game info.");
+  //     return;
+  //   }
+  //   // console.log(game, "game testing");
 
-    const token = localStorage.getItem("token");
-    try {
-      setIsLaunchingGame(true); // ✅ Show loading screen
-      const response = await axios.get(`${BASE_URL}/player/spribe/${game}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      // console.log(response, "response.................");
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     setIsLaunchingGame(true); // ✅ Show loading screen
+  //     const response = await axios.get(`${BASE_URL}/player/spribe/${game}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     // console.log(response, "response.................");
 
-      const gameUrl = response.data.gameUrl || response.data?.gameUrl;
+  //     const gameUrl = response.data.gameUrl || response.data?.gameUrl;
 
-      // console.log(gameUrl, "gameUrl..............");
+  //     // console.log(gameUrl, "gameUrl..............");
 
-      if (gameUrl) {
-        setSelectedGameUrl(gameUrl);
-        setShowFullScreenGame(true);
-      } else {
-        toast.error("Failed to get game URL.");
-      }
-    } catch (error) {
-      setIsLaunchingGame(false);
+  //     if (gameUrl) {
+  //       setSelectedGameUrl(gameUrl);
+  //       setShowFullScreenGame(true);
+  //     } else {
+  //       toast.error("Failed to get game URL.");
+  //     }
+  //   } catch (error) {
+  //     setIsLaunchingGame(false);
 
-      // Check for 401 or unauthenticated message
-      const errMsg = error.response?.data?.message;
+  //     // Check for 401 or unauthenticated message
+  //     const errMsg = error.response?.data?.message;
 
-      if (errMsg === "Unauthenticated." || error.response?.status === 401) {
-        toast.error("Please login to jump into the Game World! 🎮🚀", {
-          toastId: "unauthenticated",
-        });
+  //     if (errMsg === "Unauthenticated." || error.response?.status === 401) {
+  //       toast.error("Please login to jump into the Game World! 🎮🚀", {
+  //         toastId: "unauthenticated",
+  //       });
 
-        // Clear token if any
-        localStorage.removeItem("token");
+  //       // Clear token if any
+  //       localStorage.removeItem("token");
 
-        // Redirect after a short delay (e.g., 2 seconds)
-        setTimeout(() => {
-          navigate("/login");
-        }, 8000);
-        return;
-      }
+  //       // Redirect after a short delay (e.g., 2 seconds)
+  //       setTimeout(() => {
+  //         navigate("/login");
+  //       }, 8000);
+  //       return;
+  //     }
 
-      // console.error("Error launching game:", error);
-      toast.error("Game launch failed. Try again later.");
-    }
-  };
+  //     // console.error("Error launching game:", error);
+  //     toast.error("Game launch failed. Try again later.");
+  //   }
+  // };
 
   // game URL Iframe Opens here
   // const handleGameClick = async (game) => {
@@ -796,6 +794,22 @@ function Home() {
     }
   };
   // back btn setup Ends
+
+  const Aviator = {
+  provider: "Spribe",  
+  name: "Aviator",
+  uuid: "841d0a6789c74dd4abab65133287af9b",  
+  has_lobby: 0,
+  has_tables: 0,          
+};
+ 
+const LUCKY6_GAME = {
+  provider: "ExcellentReel",  
+  name: "Lucky 6",
+  uuid: "a9b5c9d280c00ff831afd105e735d01af7257e25",  
+  has_lobby: 0,
+  has_tables: 0,          
+};
   return (
     <>
       {/* header  */}
@@ -886,11 +900,7 @@ function Home() {
                                 },
                               }}
                             >
-                              <SwiperSlide
-                                onClick={() =>
-                                  navigate(`/filtered-games?type=crash`)
-                                }
-                              >
+                              <SwiperSlide onClick={() => handleGameClick(Aviator)}>
                                 <img
                                   src="assets/img/slider/8.png"
                                   className="w-100 rounded-2"
@@ -898,9 +908,7 @@ function Home() {
                                 />
                               </SwiperSlide>
 
-                              <SwiperSlide
-                                onClick={() => handleImageClick("Lucky 6")} // or getName(provider)
-                              >
+                               <SwiperSlide onClick={() => handleGameClick(LUCKY6_GAME)}>
                                 <img
                                   src="assets/img/slider/lucky 6.png"
                                   className="w-100 rounded-2"
@@ -2130,7 +2138,8 @@ function Home() {
                                         src={
                                           provider.images?.logo ||
                                           provider.images?.name ||
-                                          provider.images?.logo_name
+                                          provider.images?.logo_name||
+                                          "assets/img/game.png"
                                         }
                                         alt={provider.provider}
                                         className="w-50"
@@ -2297,13 +2306,13 @@ function Home() {
                               />{" "}
                               <h5 className="m-0 ms-2">Bonus </h5>
                             </div>
-                            <Link to="/bonus">
+                            {/* <Link to="/bonus">
                               <div>
                                 <span className="text-white fs-13 fw-500 right_heading">
                                   All <i className="ri-arrow-right-s-line" />
                                 </span>
                               </div>
-                            </Link>
+                            </Link> */}
                           </div>
 
                           <div className="row px-0">

@@ -238,7 +238,7 @@ function handleChoose(method) {
                         )}
                         {err && <p className="text-danger mb-3">{err}</p>}
                         {!loading && !err && methods.length === 0 && (
-                          <p className="text-muted">No methods available.</p>
+                          <p className="text-white">No methods available.</p>
                         )}
                         {/* cvcv */}
                         {/* Left (methods) | Right (image) */}

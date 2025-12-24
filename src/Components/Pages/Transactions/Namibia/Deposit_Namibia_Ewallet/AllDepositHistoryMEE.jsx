@@ -248,7 +248,7 @@ const DepositMethod = () => {
                         {loading && <p className="text-white text-center">Loading…</p>}
                         {err && <p className="text-danger mb-3">{err}</p>}
                         {!loading && !err && methods.length === 0 && (
-                          <p className="text-muted">No methods available.</p>
+                          <p className="text-white">No methods available.</p>
                         )}
 
                         {/* Left (methods) | Right (image) */}

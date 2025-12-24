@@ -230,7 +230,7 @@ const WithdrawAmountRequest = ({ amount, bankId }) => {
                 </p>
                 {bankDetails?.ifsc_code && (
                   <p className="mb-0">
-                    IFSC Code: <strong>{bankDetails.ifsc_code}</strong>
+                    Branch Code: <strong>{bankDetails.ifsc_code}</strong>
                   </p>
                 )}
               </div>

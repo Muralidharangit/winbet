@@ -404,7 +404,7 @@ const AccountDashboard = () => {
           <div className="modal-dialog modal-dialog-centered Edit_bank_pop_up">
             <div
               className="modal-content"
-              style={{ backgroundColor: "#243853" }}
+              style={{ backgroundColor: "#2a2a2a" }}
             >
               <div className="modal-header">
                 <h2 className="modal-title fs-5 py-2" id="exampleModalLabel">
