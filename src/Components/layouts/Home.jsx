@@ -6,7 +6,7 @@ import BottomFooter from "./footer/BottomFooter";
 import Footer from "./footer/Footer";
 // import OffCanvas from "../offcanvapages/Offcanva";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import routes from "../routes/route";
+// import routes from "../routes/route";
 import BottomProvider from "./footer/BottomProvider";
 import BASE_URL from "../../API/api";
 import { toast, ToastContainer } from "react-toastify";
@@ -15,7 +15,7 @@ import AuthContext from "../../Auth/AuthContext";
 import FullPageLoader from "./FullPageLoader";
 import axiosInstance from "../../API/axiosConfig";
 
-import { Images } from "./Header/constants/images";
+// import { Images } from "./Header/constants/images";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -23,16 +23,18 @@ import {
   fetchDiceGames,
   fetchProviderList,
   fetchSmartSoftGames,
+  // getIsMobileParam,
 } from "../../hooks/homePageApi";
 import { useQuery } from "@tanstack/react-query";
 import Sidebar from "./Header/Sidebar";
+import {CURRENCY_SYMBOL } from "../../constants";
 
 function Home() {
   const { isLoading } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
   const [result, setResult] = useState(null);
   // State for all games
-  const [games, setGames] = useState([]);
+  // const [games, setGames] = useState([]);
   const [selectedGameUrl, setSelectedGameUrl] = useState(null);
   const [showFullScreenGame, setShowFullScreenGame] = useState(false);
   const [isLaunchingGame, setIsLaunchingGame] = useState(false);
@@ -44,26 +46,26 @@ function Home() {
   // const [slotGames, setslotGames] = useState([]);
 
   // State for dice games
-  const [isLoadings, setIsLoadings] = useState(true); // Correct placement
+  // const [isLoadings, setIsLoadings] = useState(true); // Correct placement
 
   // const [diceGames, setDiceGames] = useState([]);
-  const [isLoadingDice, setIsLoadingDice] = useState(true); // ✅ add this
-  const [slotGames, setslotGames] = useState([]);
+  // const [isLoadingDice, setIsLoadingDice] = useState(true); // ✅ add this
+  // const [slotGames, setslotGames] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
   // const [providerlist, setproviderlist] = useState([]);
-  const [isLoadingSlot, setIsLoadingSlot] = useState(true); // New loading state
+  // const [isLoadingSlot, setIsLoadingSlot] = useState(true); // New loading state
   const iframeRef = useRef(null);
 
   const location = useLocation();
   const navigate = useNavigate();
+  const hasShownRef = useRef(false);
+  const { fetchUser, user } = useContext(AuthContext);
   // const { data: , isLoading_data } = useProviders();
   // Fetch Dice Games Effect
   const {
     data: diceGames = [],
     isLoadingDiceGame,
-    isError,
-    error,
   } = useQuery({
     queryKey: ["diceGames"],
     queryFn: fetchDiceGames,
@@ -94,32 +96,84 @@ function Home() {
     staleTime: 5 * 60 * 1000, // optional 5 minutes cache
   });
 
+  // useEffect(() => {
+  //   const flash = sessionStorage.getItem("giftFlash");
+  //   if (flash) {
+  //     try {
+  //       const parsed = JSON.parse(flash);
+  //       setResult(parsed);
+  //       setShowModal(true);
+  //     } catch {
+  //       setResult({ type: "error", message: flash });
+  //       setShowModal(true);
+  //     }
+  //     sessionStorage.removeItem("giftFlash");
+  //   }
+  // }, []);
+
   useEffect(() => {
-    const flash = sessionStorage.getItem("giftFlash");
-    if (flash) {
+    const showFromStorage = () => {
+      const flash = sessionStorage.getItem("giftFlash");
+      if (!flash) return;
       try {
-        const parsed = JSON.parse(flash);
-        setResult(parsed);
-        setShowModal(true);
+        setResult(JSON.parse(flash));
       } catch {
         setResult({ type: "error", message: flash });
-        setShowModal(true);
       }
+      setShowModal(true);
+      sessionStorage.removeItem("giftFlash"); // consume
+    };
+
+    showFromStorage(); // show if it was already set before mount
+    window.addEventListener("giftFlash", showFromStorage);
+    return () => window.removeEventListener("giftFlash", showFromStorage);
+  }, []);
+  useEffect(() => {
+    const showFromStorage = () => {
+      if (hasShownRef.current) return;
+      const flash = sessionStorage.getItem("giftFlash");
+      if (!flash) return;
+
+      hasShownRef.current = true;
+      try {
+        setResult(JSON.parse(flash));
+      } catch {
+        setResult({ type: "error", message: flash });
+      }
+      setShowModal(true);
       sessionStorage.removeItem("giftFlash");
-    }
+    };
+
+    showFromStorage();
+    window.addEventListener("giftFlash", showFromStorage);
+    return () => window.removeEventListener("giftFlash", showFromStorage);
   }, []);
 
+  // useEffect(() => {
+  //   if (location.state?.showLoginSuccess) {
+  //     toast.success("Login successful! 🎉", {
+  //       toastId: "login-success",
+  //       position: "top-right",
+  //       autoClose: 3000,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       onClose: () => {
+  //         // Navigate after toast is closed automatically
+  //         navigate(location.pathname, { replace: true, state: {} });
+  //       },
+  //     });
+  //   }
+  // }, [location, navigate]);
   useEffect(() => {
     if (location.state?.showLoginSuccess) {
       toast.success("Login successful! 🎉", {
         toastId: "login-success",
-        position: "top-right",
         autoClose: 3000,
-        closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         onClose: () => {
-          // Navigate after toast is closed automatically
+          // runs if user clicks X OR after timeout
           navigate(location.pathname, { replace: true, state: {} });
         },
       });
@@ -289,66 +343,66 @@ function Home() {
   // }, []);
 
   // game URL Iframe Opens here
-  const handleGameClickTurbo = async (game) => {
-    // console.log(game);
-    if (!game.key) {
-      toast.error("Missing game info.");
-      return;
-    }
+  // const handleGameClickTurbo = async (game) => {
+  //   // console.log(game);
+  //   if (!game.key) {
+  //     toast.error("Missing game info.");
+  //     return;
+  //   }
 
-    console.log(game, "testing....................");
+  //   // console.log(game, "testing....................");
 
-    const token = localStorage.getItem("token");
-    try {
-      setIsLaunchingGame(true); // ✅ Show loading screen
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     setIsLaunchingGame(true); // ✅ Show loading screen
 
-      const response = await axios.get(`${BASE_URL}/player/turbo/${game.key}`, {
-        // params: { return_url: "https://jiboomba.in/games" },
-        params: {
-          return_url: window.location.origin,
-          has_lobby: game.key,
-          has_tables: game.key,
-        }, // 👈 dynamic base URL },
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  //     const response = await axios.get(`${BASE_URL}/player/turbo/${game.key}`, {
+  //       // params: { return_url: "https://jiboomba.in/games" },
+  //       params: {
+  //         return_url: window.location.origin,
+  //         has_lobby: game.key,
+  //         has_tables: game.key,
+  //       }, // 👈 dynamic base URL },
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
 
-      // console.log(response, "response.................");
+  //     // console.log(response, "response.................");
 
-      const gameUrl = response.data.gameUrl || response.data?.game_url;
+  //     const gameUrl = response.data.gameUrl || response.data?.game_url;
 
-      // console.log(gameUrl, "gameUrl..............");
+  //     // console.log(gameUrl, "gameUrl..............");
 
-      if (gameUrl) {
-        setSelectedGameUrl(gameUrl);
-        setShowFullScreenGame(true);
-      } else {
-        toast.error("Failed to get game URL.");
-      }
-    } catch (error) {
-      setIsLaunchingGame(false);
+  //     if (gameUrl) {
+  //       setSelectedGameUrl(gameUrl);
+  //       setShowFullScreenGame(true);
+  //     } else {
+  //       toast.error("Failed to get game URL.");
+  //     }
+  //   } catch (error) {
+  //     setIsLaunchingGame(false);
 
-      // Check for 401 or unauthenticated message
-      const errMsg = error.response?.data?.message;
+  //     // Check for 401 or unauthenticated message
+  //     const errMsg = error.response?.data?.message;
 
-      if (errMsg === "Unauthenticated." || error.response?.status === 401) {
-        toast.error("Please login to jump into the Game World! 🎮🚀", {
-          toastId: "unauthenticated",
-        });
+  //     if (errMsg === "Unauthenticated." || error.response?.status === 401) {
+  //       toast.error("Please login to jump into the Game World! 🎮🚀", {
+  //         toastId: "unauthenticated",
+  //       });
 
-        // Clear token if any
-        localStorage.removeItem("token");
+  //       // Clear token if any
+  //       localStorage.removeItem("token");
 
-        // Redirect after a short delay (e.g., 2 seconds)
-        setTimeout(() => {
-          navigate("/login");
-        }, 8000);
-        return;
-      }
+  //       // Redirect after a short delay (e.g., 2 seconds)
+  //       setTimeout(() => {
+  //         navigate("/login");
+  //       }, 8000);
+  //       return;
+  //     }
 
-      console.error("Error launching game:", error);
-      toast.error("Game launch failed. Try again later.");
-    }
-  };
+  //     // console.error("Error launching game:", error);
+  //     toast.error("Game launch failed. Try again later.");
+  //   }
+  // };
 
   // Spribe Games Effect
   // Declare the state for Spribe Games
@@ -381,113 +435,114 @@ function Home() {
   // }, []);
 
   // game URL Iframe Opens here
-  const handleGameClickSpribe = async (game) => {
-    if (!game) {
-      toast.error("Missing game info.");
-      return;
-    }
-    // console.log(game, "game testing");
+  // const handleGameClickSpribe = async (game) => {
+  //   if (!game) {
+  //     toast.error("Missing game info.");
+  //     return;
+  //   }
+  //   // console.log(game, "game testing");
 
-    const token = localStorage.getItem("token");
-    try {
-      setIsLaunchingGame(true); // ✅ Show loading screen
-      const response = await axios.get(`${BASE_URL}/player/spribe/${game}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      // console.log(response, "response.................");
+  //   const token = localStorage.getItem("token");
+  //   try {
+  //     setIsLaunchingGame(true); // ✅ Show loading screen
+  //     const response = await axios.get(`${BASE_URL}/player/spribe/${game}`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     // console.log(response, "response.................");
 
-      const gameUrl = response.data.gameUrl || response.data?.gameUrl;
+  //     const gameUrl = response.data.gameUrl || response.data?.gameUrl;
 
-      // console.log(gameUrl, "gameUrl..............");
+  //     // console.log(gameUrl, "gameUrl..............");
 
-      if (gameUrl) {
-        setSelectedGameUrl(gameUrl);
-        setShowFullScreenGame(true);
-      } else {
-        toast.error("Failed to get game URL.");
-      }
-    } catch (error) {
-      setIsLaunchingGame(false);
+  //     if (gameUrl) {
+  //       setSelectedGameUrl(gameUrl);
+  //       setShowFullScreenGame(true);
+  //     } else {
+  //       toast.error("Failed to get game URL.");
+  //     }
+  //   } catch (error) {
+  //     setIsLaunchingGame(false);
 
-      // Check for 401 or unauthenticated message
-      const errMsg = error.response?.data?.message;
+  //     // Check for 401 or unauthenticated message
+  //     const errMsg = error.response?.data?.message;
 
-      if (errMsg === "Unauthenticated." || error.response?.status === 401) {
-        toast.error("Please login to jump into the Game World! 🎮🚀", {
-          toastId: "unauthenticated",
-        });
+  //     if (errMsg === "Unauthenticated." || error.response?.status === 401) {
+  //       toast.error("Please login to jump into the Game World! 🎮🚀", {
+  //         toastId: "unauthenticated",
+  //       });
 
-        // Clear token if any
-        localStorage.removeItem("token");
+  //       // Clear token if any
+  //       localStorage.removeItem("token");
 
-        // Redirect after a short delay (e.g., 2 seconds)
-        setTimeout(() => {
-          navigate("/login");
-        }, 8000);
-        return;
-      }
+  //       // Redirect after a short delay (e.g., 2 seconds)
+  //       setTimeout(() => {
+  //         navigate("/login");
+  //       }, 8000);
+  //       return;
+  //     }
 
-      console.error("Error launching game:", error);
-      toast.error("Game launch failed. Try again later.");
-    }
-  };
+  //     // console.error("Error launching game:", error);
+  //     toast.error("Game launch failed. Try again later.");
+  //   }
+  // };
 
   // game URL Iframe Opens here
-  const handleGameClick = async (game) => {
-    if (!game.provider || !game.name || !game.uuid) {
-      toast.error("Missing game info.");
-      return;
-    }
-    // console.log(game.has_lobby, "testing....................");
-    const token = localStorage.getItem("token");
+  // const handleGameClick = async (game) => {
+  //   if (!game.provider || !game.name || !game.uuid) {
+  //     toast.error("Missing game info.");
+  //     return;
+  //   }
+  //   // console.log(game.has_lobby, "testing....................");
+  //   const token = localStorage.getItem("token");
 
-    try {
-      setIsLaunchingGame(true);
+  //   try {
+  //     setIsLaunchingGame(true);
+  //     const isMobileParam = getIsMobileParam();
 
-      const response = await axios.get(
-        `${BASE_URL}/player/${game.provider}/launch/${encodeURIComponent(
-          game.name
-        )}/${game.uuid}`,
-        {
-          params: {
-            return_url: `${window.location.origin}/all-games?is_mobile=1`,
-            has_lobby: game.has_lobby,
-            has_tables: game.has_tables,
-          },
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+  //     const response = await axios.get(
+  //       `${BASE_URL}/player/${game.provider}/launch/${encodeURIComponent(
+  //         game.name
+  //       )}/${game.uuid}`,
+  //       {
+  //         params: {
+  //           return_url: `${window.location.origin}/all-games?is_mobile=${isMobileParam}`,
+  //           has_lobby: game.has_lobby,
+  //           has_tables: game.has_tables,
+  //         },
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       }
+  //     );
 
-      const gameUrl = response.data?.game?.gameUrl || response.data?.game_url;
-      if (gameUrl) {
-        // Store current location so user can return later
-        sessionStorage.setItem("prevPage", location.pathname + location.search);
+  //     const gameUrl = response.data?.game?.gameUrl || response.data?.game_url;
+  //     if (gameUrl) {
+  //       // Store current location so user can return later
+  //       sessionStorage.setItem("prevPage", location.pathname + location.search);
 
-        // Push a new state so back button will return here
-        window.history.pushState(
-          { isGameOpen: true },
-          "",
-          window.location.href
-        );
+  //       // Push a new state so back button will return here
+  //       window.history.pushState(
+  //         { isGameOpen: true },
+  //         "",
+  //         window.location.href
+  //       );
 
-        setSelectedGameUrl(gameUrl);
-        setShowFullScreenGame(true);
-      } else {
-        toast.error("Failed to get game URL.");
-      }
-    } catch (error) {
-      setIsLaunchingGame(false);
-      const errMsg = error.response?.data?.message;
-      if (errMsg === "Unauthenticated." || error.response?.status === 401) {
-        toast.error("Please login to jump into the Game World! 🎮🚀");
-        localStorage.removeItem("token");
-        setTimeout(() => navigate("/login"), 3000);
-        return;
-      }
-      console.error("Error launching game:", error);
-      toast.error("Game launch failed. Try again later.");
-    }
-  };
+  //       setSelectedGameUrl(gameUrl);
+  //       setShowFullScreenGame(true);
+  //     } else {
+  //       toast.error("Failed to get game URL.");
+  //     }
+  //   } catch (error) {
+  //     setIsLaunchingGame(false);
+  //     const errMsg = error.response?.data?.message;
+  //     if (errMsg === "Unauthenticated." || error.response?.status === 401) {
+  //       toast.error("Please login to jump into the Game World! 🎮🚀");
+  //       localStorage.removeItem("token");
+  //       setTimeout(() => navigate("/login"), 3000);
+  //       return;
+  //     }
+  //     // console.error("Error launching game:", error);
+  //     toast.error("Game launch failed. Try again later.");
+  //   }
+  // };
 
   // const handleFilterClick = async (type) => {
   //   try {
@@ -544,12 +599,13 @@ function Home() {
     { type: "card", imgSrc: "assets/img/turbo/3.png" },
     { type: "dice", imgSrc: "assets/img/turbo/4.png" },
     { type: "shooting", imgSrc: "assets/img/turbo/5.png" },
-    { type: "home", imgSrc: "assets/img/turbo/6.png" }, // Last one navigating to home
+    { type: "home", imgSrc: "assets/img/turbo/6.png" },
+    // Last one navigating to home
   ];
 
   // State to manage loading status for this section
   const [isLoadingGames, setIsLoadingGames] = useState(true);
-
+  // sds
   // Your static game data (replace with API fetch in a real application)
   const allGamesData = [
     { type: "roulette", imgSrc: "assets/img/turbo/1.png" },
@@ -558,8 +614,202 @@ function Home() {
     { type: "dice", imgSrc: "assets/img/turbo/4.png" },
     { type: "shooting", imgSrc: "assets/img/turbo/5.png" },
     { type: "general", imgSrc: "assets/img/turbo/6.png", linkTo: routes.home },
+    { type: "bingo", imgSrc: "assets/img/turbo/7.png" },
+    { type: "fish/shooting", imgSrc: "assets/img/turbo/8.png" },
+    { type: "table", imgSrc: "assets/img/turbo/9.png" },
   ];
 
+  // inside component
+  const [isSearching, setIsSearching] = useState(false);
+  // const navigate = useNavigate();
+  const handleImageClick = async (term) => {
+    try {
+      setIsSearching(true);
+      const res = await axiosInstance.get("/all-games", {
+        params: { is_mobile: 1, search: term, page: 1 }, // Lucky 6 → term = "Lucky 6"
+      });
+      const results = res?.data?.allGames || [];
+
+      // use results (navigate + pass state, or open modal, etc.)
+      navigate(`/filtered-games?search=${encodeURIComponent(term)}`, {
+        state: { results },
+      });
+    } catch (e) {
+      // console.error("Search failed:", e);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  const RETURN_URL_KEY = "returnUrl";
+
+  const navigateToSavedReturnUrl = React.useCallback(() => {
+    const target = sessionStorage.getItem(RETURN_URL_KEY) || "/";
+
+    // Strip origin so React Router can handle it
+    const origin = window.location.origin;
+    const toPath = target.startsWith(origin)
+      ? target.slice(origin.length)
+      : target;
+
+    // If we’re already at that path+query, just close overlay; don’t navigate again
+    const here = window.location.pathname + window.location.search;
+    const url = new URL(target, origin);
+    const there = url.pathname + url.search;
+    if (here === there) return;
+
+    navigate(toPath, { replace: true }); // soft navigate (no full reload)
+  }, [navigate]);
+
+  // back btn setup starts
+  const buildReturnUrl = (location) => {
+    const base = import.meta?.env?.BASE_URL || process.env.PUBLIC_URL || "";
+    const baseTrim = base.replace(/\/$/, "");
+    const path = `${baseTrim}${location.pathname}${location.search || ""}`;
+    return new URL(path, window.location.origin).toString();
+  };
+
+  // back btn / overlay state (OUTSIDE the function)
+  // const [showModal, setShowModal] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const [iframeError, setIframeError] = useState(false);
+  // const iframeRef = useRef(null);
+
+  const handleConfirm = async () => {
+    setShowModal(false);
+    setIsLaunchingGame(false);
+    setShowFullScreenGame(false);
+    setSelectedGameUrl("");
+    await fetchUser(user?.token);
+    // go back to saved returnUrl
+    const target = sessionStorage.getItem(RETURN_URL_KEY) || "/";
+    // window.location.replace(target);
+    navigateToSavedReturnUrl();
+  };
+
+  const handleCancel = () => setShowModal(false);
+
+  const handleIframeLoad = () => {
+    setIframeLoaded(true);
+    setIsLaunchingGame(false);
+
+    const el = iframeRef.current;
+    if (!el) return;
+
+    try {
+      // if same-origin (provider redirected to our app)
+      const href = el.contentWindow.location.href;
+      if (href.startsWith(window.location.origin)) {
+        setShowFullScreenGame(false);
+        setSelectedGameUrl("");
+        setIframeError(false);
+        setIframeLoaded(false);
+        const target = sessionStorage.getItem(RETURN_URL_KEY) || href;
+        // window.location.replace(target);
+        navigateToSavedReturnUrl();
+      }
+    } catch {
+      // still cross-origin; ignore
+    }
+  };
+
+  // ---- keep popstate too (optional but nice) ----
+  useEffect(() => {
+    const onPop = () => {
+      setShowFullScreenGame(false);
+      setSelectedGameUrl("");
+      setIsLaunchingGame(false);
+      // const target = sessionStorage.getItem(RETURN_URL_KEY) || "/";
+      // window.location.replace(target);
+      navigateToSavedReturnUrl();
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // ====== GAME LAUNCH (ENTIRE function body stays together) ======
+  const handleGameClick = async (game) => {
+    if (!game?.provider || !game?.name || !game?.uuid) {
+      toast.error("Missing game info.");
+      return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please login to jump into the Game World! 🎮🚀");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      setIsLaunchingGame(true);
+
+      const returnUrl = buildReturnUrl(location);
+      sessionStorage.setItem(RETURN_URL_KEY, returnUrl);
+
+      const response = await axios.get(
+        `${BASE_URL}/player/${game.provider}/launch/${encodeURIComponent(
+          game.name
+        )}/${game.uuid}`,
+        {
+          params: {
+            return_url: returnUrl,
+            ...(game.has_lobby !== undefined && { has_lobby: game.has_lobby }),
+            ...(game.has_tables !== undefined && {
+              has_tables: game.has_tables,
+            }),
+          },
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const gameUrl = response.data?.game?.gameUrl || response.data?.game_url;
+      if (gameUrl) {
+
+        sessionStorage.setItem("prevPage", location.pathname + location.search);
+
+      
+        window.history.pushState(
+          { isGameOpen: true },
+          "",
+          window.location.href
+        );
+
+        setSelectedGameUrl(gameUrl);
+        setShowFullScreenGame(true);
+      } else {
+        setIsLaunchingGame(false);
+        toast.error("Failed to get game URL.");
+      }
+    } catch (error) {
+      setIsLaunchingGame(false);
+      const errMsg = error.response?.data?.message;
+      if (errMsg === "Unauthenticated." || error.response?.status === 401) {
+        toast.error("Please login to jump into the Game World! 🎮🚀");
+        localStorage.removeItem("token");
+        setTimeout(() => navigate("/login"), 3000);
+        return;
+      }
+      toast.error("Game launch failed. Try again later.");
+    }
+  };
+  // back btn setup Ends
+
+  const Aviator = {
+  provider: "Spribe",  
+  name: "Aviator",
+  uuid: "841d0a6789c74dd4abab65133287af9b",  
+  has_lobby: 0,
+  has_tables: 0,          
+};
+ 
+const LUCKY6_GAME = {
+  provider: "ExcellentReel",  
+  name: "Lucky 6",
+  uuid: "a9b5c9d280c00ff831afd105e735d01af7257e25",  
+  has_lobby: 0,
+  has_tables: 0,          
+};
   return (
     <>
       {/* header  */}
@@ -601,13 +851,16 @@ function Home() {
                     <p>Launching game, please wait...</p>
                   </div>
                 )}
+
                 <ToastContainer
                   position="top-right"
                   autoClose={5000}
                   theme="dark"
+                  closeButton={<MyClose />}
                 />
+
                 {isLoading ? (
-                  <FullPageLoader message="Loading..." />
+                  <FullPageLoader message="" />
                 ) : (
                   <>
                     <section className="container vh-100  py-2">
@@ -647,44 +900,111 @@ function Home() {
                                 },
                               }}
                             >
-                              <SwiperSlide>
+                              <SwiperSlide onClick={() => handleGameClick(Aviator)}>
                                 <img
-                                  src="assets/img/slider/first1.png"
+                                  src="assets/img/slider/8.png"
                                   className="w-100 rounded-2"
-                                  alt="Gaming Banner Slide 1" // Improved alt text
+                                  alt="Gaming Banner Slide 6"
                                 />
                               </SwiperSlide>
-                              <SwiperSlide>
+
+                               <SwiperSlide onClick={() => handleGameClick(LUCKY6_GAME)}>
+                                <img
+                                  src="assets/img/slider/lucky 6.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 5"
+                                />
+                              </SwiperSlide>
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=card`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/first6.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 6"
+                                />
+                              </SwiperSlide>
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=slots`)
+                                }
+                              >
                                 <img
                                   src="assets/img/slider/first2.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 2"
                                 />
                               </SwiperSlide>
-                              <SwiperSlide>
+
+                              {/* bingo */}
+
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=bingo`)
+                                }
+                              >
                                 <img
-                                  src="assets/img/slider/first3.png"
+                                  src="assets/img/slider/bingo banner.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 2"
+                                />
+                              </SwiperSlide>
+
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=roulette`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/first1.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 1" // Improved alt text
+                                />
+                              </SwiperSlide>
+
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=blackjack`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/10.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 6"
+                                />
+                              </SwiperSlide>
+
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=lucky`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/first7.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 3"
                                 />
                               </SwiperSlide>
-                              <SwiperSlide>
+                              {/* <SwiperSlide onClick={() =>
+                                    navigate(`/filtered-games?type=card`)
+                                  }
+ >
                                 <img
                                   src="assets/img/slider/first4.png"
                                   className="w-100 rounded-2"
-                                  alt="Gaming Banner Slide 4"
+                                  alt="Gaming Banner Slide 4" xfd
                                 />
-                              </SwiperSlide>
-                              <SwiperSlide>
+                              </SwiperSlide> */}
+
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=card`)
+                                }
+                              >
                                 <img
-                                  src="assets/img/slider/first5.png"
-                                  className="w-100 rounded-2"
-                                  alt="Gaming Banner Slide 5"
-                                />
-                              </SwiperSlide>
-                              <SwiperSlide>
-                                <img
-                                  src="assets/img/slider/first6.png"
+                                  src="assets/img/slider/9.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 6"
                                 />
@@ -731,12 +1051,16 @@ function Home() {
                               )}
                             </div>
 
-                            <div>
-                              <Link to="/all-games">
-                                <span className="text-white fs-13 fw-500 right_heading">
-                                  All <i className="ri-arrow-right-s-line" />
-                                </span>
-                              </Link>
+                            <div
+                              onClick={() =>
+                                navigate(`/filtered-games?type=hot`)
+                              }
+                            >
+                              {/* <Link to="/all-games"> */}
+                              <span className="text-white fs-13 fw-500 right_heading">
+                                All <i className="ri-arrow-right-s-line" />
+                              </span>
+                              {/* </Link> */}
                             </div>
                           </div>
 
@@ -752,7 +1076,7 @@ function Home() {
                             freeMode={true}
                             breakpoints={{
                               768: {
-                                slidesPerView: 7, // Tablet view
+                                slidesPerView: 5, // Tablet view
                               },
                               1024: {
                                 slidesPerView: 6, // Laptop/Desktop view
@@ -773,26 +1097,23 @@ function Home() {
                             ) : diceGames.length > 0 ? (
                               diceGames.map((game, index) => (
                                 <SwiperSlide key={game.uuid || index}>
-                                  <div className="game-card-wrapper rounded-2 new-cardclr">
+                                  <div
+                                    className="game-card-wrapper rounded-2 new-cardclr"
+                                    onClick={() => handleGameClick(game)}
+                                  >
                                     <div className="game-card p-0 m-0 p-1 ">
                                       <img
-                                        src={game.image}
+                                        src={
+                                          game.image
+                                            ? game.image
+                                            : "assets/img/play_now.png"
+                                        }
                                         className="game-card-img position-relative"
                                         alt={game.name}
                                       />
-                                      <div className="game-play-button d-flex flex-column">
-                                        <div
-                                          className="btn-play"
-                                          onClick={() => handleGameClick(game)}
-                                        >
-                                          <i className="fa-solid fa-play"></i>
-                                        </div>
+                                      <div className="btn-play position-absolute top-50 start-50 translate-middle">
+                                        <i className="fa-solid fa-play"></i>
                                       </div>
-                                      {/* <div className="d-flex flex-column text-white text-center py-2 px-1">
-                              <span className="fs-12 fw-bold text-truncate">
-                                {game.name}
-                              </span>
-                            </div> */}
                                     </div>
                                   </div>
                                 </SwiperSlide>
@@ -813,27 +1134,141 @@ function Home() {
 
                           {/* Fullscreen Game Iframe */}
                           {showFullScreenGame && selectedGameUrl && (
-                            <div
-                              style={{
-                                position: "fixed",
-                                top: 0,
-                                left: 0,
-                                width: "100vw",
-                                height: "100vh",
-                                backgroundColor: "#000",
-                                zIndex: 9999,
-                              }}
-                            >
-                              <iframe
-                                src={selectedGameUrl}
-                                title="Game"
+                            <div className="bg-danger h-100">
+                              <div
+                                className="iframe-container"
                                 style={{
-                                  width: "100%",
-                                  height: "100%",
-                                  border: "none",
+                                  position: "fixed",
+                                  top: 0,
+                                  left: 0,
+                                  width: "100vw",
+                                  height: "100vh",
+                                  backgroundColor: "#000",
+                                  zIndex: 9999,
+                                  height: "100dvh",
                                 }}
-                                allowFullScreen
-                              />
+                              >
+                                {/* Navbar only appears if iframe loaded successfully */}
+                                {iframeLoaded && !iframeError && (
+                                  <nav
+                                    className="navbar py-1 navbar-dark bg-black sticky-top shadow-sm d-flex align-items-center"
+                                    style={{ height: "5%" }}
+                                  >
+                                    <div className="container-fluid d-flex align-items-center">
+                                      <button
+                                        className="btn btn-index w-100 deposit-btn text-white py-2"
+                                        style={{ background: "#292524" }}
+                                        onClick={() => setShowModal(true)}
+                                      >
+                                        Back
+                                      </button>
+                                    </div>
+                                  </nav>
+                                )}
+
+                                {/* Iframe or Error Message */}
+                                <div
+                                  className="flex-grow-1 d-flex justify-content-center align-items-center"
+                                  style={{ height: "95%" }}
+                                >
+                                  {!iframeError ? (
+                                    <iframe
+                                      ref={iframeRef}
+                                      src={selectedGameUrl}
+                                      title="Game"
+                                      allowFullScreen
+                                      // onLoad={() => setIframeLoaded(true)}
+                                      onError={() => setIframeError(true)}
+                                      onLoad={handleIframeLoad}
+                                      style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        border: "none",
+                                      }}
+                                    />
+                                  ) : (
+                                    <div
+                                      style={{
+                                        color: "red",
+                                        fontSize: "1.5rem",
+                                        textAlign: "center",
+                                      }}
+                                    >
+                                      Game not visible
+                                    </div>
+                                  )}
+                                </div>
+
+                                {/* Modal */}
+                                {showModal && (
+                                  <div
+                                    className="modal-backdrop d-flex justify-content-center align-items-center"
+                                    style={{
+                                      backgroundColor: "rgba(0,0,0,0.8)",
+                                      position: "fixed",
+                                      top: 0,
+                                      left: 0,
+                                      width: "100%",
+                                      height: "100%",
+                                      zIndex: 99999,
+                                    }}
+                                  >
+                                    <div
+                                      className="modal-dialog modal-dialog-centered m-2"
+                                      style={{
+                                        maxWidth: "400px",
+                                        color: "white",
+                                      }}
+                                    >
+                                      <div
+                                        className="modal-content text-center p-4"
+                                        style={{
+                                          borderRadius: "1rem",
+                                          background:
+                                            "linear-gradient(145deg, #0f0f0f, #1a1a1a)",
+                                          border: "1px solid #ff0055",
+                                          boxShadow: "0 0 20px #ff0055ae",
+                                        }}
+                                      >
+                                        <div className="modal-header border-0 justify-content-end">
+                                          <button
+                                            type="button"
+                                            className="btn-close btn-close-white"
+                                            onClick={handleCancel}
+                                          />
+                                        </div>
+
+                                        <div className="modal-body">
+                                          <h5 className="modal-title fs-2 text-warning mb-3">
+                                            Go Back?
+                                          </h5>
+                                          <p className="fs-5 text-light">
+                                            Are you sure you want to leave this
+                                            game?
+                                          </p>
+                                        </div>
+
+                                        <div className="modal-footer border-0 justify-content-center gap-2">
+                                          <button
+                                            type="button"
+                                            className="btn btn-index w-100 deposit-btn text-white py-2"
+                                            onClick={handleConfirm}
+                                          >
+                                            OK
+                                          </button>
+                                          <button
+                                            type="button"
+                                            className="btn btn-index w-100 deposit-btn text-white py-2"
+                                            onClick={handleCancel}
+                                          >
+                                            Cancel
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           )}
                         </div>
@@ -877,13 +1312,13 @@ function Home() {
                               <h5 className="m-0 ms-2">Games Type</h5>
                             )}
                           </div>
-                          <div>
+                          {/* <div>
                             <Link to={routes.games.all}>
                               <span className="text-white fs-13 fw-500 right_heading">
                                 All <i className="ri-arrow-right-s-line" />
                               </span>
                             </Link>
-                          </div>
+                          </div> */}
                         </div>
 
                         {/* SkeletonTheme for consistent skeleton colors */}
@@ -996,7 +1431,7 @@ function Home() {
                                         ) {
                                           // Added spacebar for accessibility
                                           navigate(
-                                            `/filtered-games?type=${game.type}`
+                                            `/filtered-games?search=${game.type}`
                                           );
                                         }
                                       }}
@@ -1026,7 +1461,7 @@ function Home() {
                                         className="card bg-cardtrans p-1"
                                         onClick={() =>
                                           navigate(
-                                            `/filtered-games?type=${game.type}`
+                                            `/filtered-games?search=${game.type}`
                                           )
                                         }
                                         role="button"
@@ -1037,7 +1472,7 @@ function Home() {
                                             e.key === " "
                                           ) {
                                             navigate(
-                                              `/filtered-games?type=${game.type}`
+                                              `/filtered-games?search=${game.type}`
                                             );
                                           }
                                         }}
@@ -1067,7 +1502,7 @@ function Home() {
                                       className="card bg-cardtrans p-1"
                                       onClick={() =>
                                         navigate(
-                                          `/filtered-games?type=${game.type}`
+                                          `/filtered-games?search=${game.type}`
                                         )
                                       }
                                       role="button"
@@ -1078,7 +1513,7 @@ function Home() {
                                           e.key === " "
                                         ) {
                                           navigate(
-                                            `/filtered-games?type=${game.type}`
+                                            `/filtered-games?search=${game.type}`
                                           );
                                         }
                                       }}
@@ -1115,13 +1550,13 @@ function Home() {
                               />
                               <h5 className="m-0 ms-2">Games Type</h5>
                             </div>
-                            <div>
+                            {/* <div>
                               <a href="./Allgames.html">
                                 <span className="text-white fs-13 fw-500 right_heading">
                                   All <i className="ri-arrow-right-s-line" />
                                 </span>
                               </a>
-                            </div>
+                            </div> */}
                           </div>
                           <div className="d-flex gap-2">
                             <div className="col-4 ">
@@ -1160,7 +1595,7 @@ function Home() {
                                 <div
                                   className="flex-column d-flex"
                                   onClick={() =>
-                                    navigate(`/filtered-games?type=instant`)
+                                    navigate(`/filtered-games?search=instant`)
                                   }
                                 >
                                   <span className="text-white fw-500 fs-13  py-2 px-1">
@@ -1187,7 +1622,9 @@ function Home() {
                                     <div
                                       className="flex-column d-flex"
                                       onClick={() =>
-                                        navigate(`/filtered-games?type=lottery`)
+                                        navigate(
+                                          `/filtered-games?search=lottery`
+                                        )
                                       }
                                     >
                                       <span className="text-white fw-500 fs-13 py-2 px-1">
@@ -1213,7 +1650,7 @@ function Home() {
                                     <div
                                       className="flex-column d-flex"
                                       onClick={() =>
-                                        navigate(`/filtered-games?type=slots`)
+                                        navigate(`/filtered-games?search=slots`)
                                       }
                                     >
                                       <span className="text-white fw-500 fs-13  py-2 px-1">
@@ -1235,7 +1672,7 @@ function Home() {
                                         "linear-gradient(to left, rgb(190 191 183 / 27%), transparent 75%) !important",
                                     }}
                                     onClick={() =>
-                                      navigate(`/filtered-games?type=dice`)
+                                      navigate(`/filtered-games?search=dice`)
                                     }
                                   >
                                     <div className="flex-column d-flex">
@@ -1258,7 +1695,7 @@ function Home() {
                                         "linear-gradient(to left, rgb(123 64 14 / 49%), transparent 75%) !important",
                                     }}
                                     onClick={() =>
-                                      navigate(`/filtered-games?type=bingo`)
+                                      navigate(`/filtered-games?search=bingo`)
                                     }
                                   >
                                     <div className="flex-column d-flex">
@@ -1394,12 +1831,14 @@ function Home() {
                             <swiper-container
                               className="mySwiper"
                               space-between="5"
-                              loop="true"
                               autoplay='{"delay": 0, "disableOnInteraction": false}'
-                              speed="2500"
                               slides-per-view="2.5"
                               centered-slides="false"
                               free-mode="true"
+                              loop={true}
+                              speed={3000}
+                              slidesPerView={2}
+                              freeMode={true}
                               breakpoints={{
                                 768: {
                                   slidesPerView: 6, // Tablet view
@@ -1483,12 +1922,16 @@ function Home() {
                                 Slot Games
                               </h5>
                             </div>
-                            <div>
-                              <Link to={routes.games.all}>
-                                <span className="text-white fs-13 fw-500 right_heading">
-                                  All <i className="ri-arrow-right-s-line" />
-                                </span>
-                              </Link>
+                            <div
+                              onClick={() =>
+                                navigate(`/filtered-games?type=slots`)
+                              }
+                            >
+                              {/* <Link to={routes.games.all}> */}
+                              <span className="text-white fs-13 fw-500 right_heading">
+                                All <i className="ri-arrow-right-s-line" />
+                              </span>
+                              {/* </Link> */}
                             </div>
                           </div>
 
@@ -1504,7 +1947,7 @@ function Home() {
                             freeMode={true}
                             breakpoints={{
                               768: {
-                                slidesPerView: 6, // Tablet view
+                                slidesPerView: 5, // Tablet view
                               },
                               1024: {
                                 slidesPerView: 7, // Laptop/Desktop view
@@ -1538,10 +1981,17 @@ function Home() {
                                   <div className="game-card-wrapper rounded-2 new-cardclr">
                                     <div className="game-card p-0 m-0 p-1">
                                       <img
-                                        src={game.image}
+                                        src={
+                                          game.image
+                                            ? game.image
+                                            : "assets/img/play_now.png"
+                                        }
                                         className="game-card-img"
                                         alt={game.name}
                                       />
+                                      <div className="btn-play position-absolute top-50 start-50 translate-middle">
+                                        <i className="fa-solid fa-play"></i>
+                                      </div>
                                       {/* <div className="d-flex flex-column text-white text-center py-2 px-1">
                               <span className="fs-12 fw-bold text-truncate">
                                 {game.name}
@@ -1609,7 +2059,7 @@ function Home() {
                               )}
                             </div>
                             <div>
-                              <Link to={routes.games.providers}>
+                              <Link to="/providers">
                                 <span className="text-white fs-13 fw-500 right_heading">
                                   All <i className="ri-arrow-right-s-line" />
                                 </span>
@@ -1688,7 +2138,8 @@ function Home() {
                                         src={
                                           provider.images?.logo ||
                                           provider.images?.name ||
-                                          provider.images?.logo_name
+                                          provider.images?.logo_name||
+                                          "assets/img/game.png"
                                         }
                                         alt={provider.provider}
                                         className="w-50"
@@ -1844,7 +2295,7 @@ function Home() {
 
                       {/*---bonus------*/}
                       <div>
-                        <div className="row">
+                        <div className="">
                           <div className="top-matches-title d-flex align-items-center gap-2  my-3 justify-content-between">
                             <div className="d-flex align-items-center">
                               <img
@@ -1853,71 +2304,79 @@ function Home() {
                                 srcSet=""
                                 width=""
                               />{" "}
-                              <h5 className="m-0 ms-2">Bonus bncghg</h5>
+                              <h5 className="m-0 ms-2">Bonus </h5>
                             </div>
-                            <Link to="/bonus">
+                            {/* <Link to="/bonus">
                               <div>
                                 <span className="text-white fs-13 fw-500 right_heading">
                                   All <i className="ri-arrow-right-s-line" />
                                 </span>
                               </div>
-                            </Link>
+                            </Link> */}
                           </div>
-                          <div className="bouns_sec p-2">
-                            <div className="card bonus_card">
-                              <div className="card-body p-0">
-                                <div className="bonus_card_sec">
-                                  {/* Top section with text and image */}
-                                  <div className="bonus_sec_top p-4 py-2">
-                                    <div className="bonus_sec_content">
-                                      <span>Casino</span>
-                                      <span className="text-shadow">
-                                        <p>100% Crash Power Bonus</p>
-                                      </span>
-                                    </div>
-                                  </div>
-                                  {/* Bottom section with timer and buttons */}
-                                  <div className="bonusBlock_other__bottom p-2">
-                                    <div className="timer_block_container d-flex align-items-center">
-                                      {/* Action buttons */}
-                                      <div className="bonus_bottom_btn red_clr w-100">
-                                        <button className="btn btn-red w-100">
-                                          Get bonus
-                                        </button>
-                                        <button className="btn btn-outline-light w-100">
-                                          Details
-                                        </button>
+
+                          <div className="row px-0">
+                            <div className="col-lg-6 mb-3">
+                              <div className="bouns_sec">
+                                <div className="card bonus_card">
+                                  <div className="card-body p-0">
+                                    <div className="bonus_card_sec">
+                                      {/* Top section with text and image */}
+                                      <div className="bonus_sec_top p-4 py-2">
+                                        <div className="bonus_sec_content">
+                                          <span>Casino</span>
+                                          <span className="text-shadow">
+                                            <p>100% Crash Power Bonus</p>
+                                          </span>
+                                        </div>
+                                      </div>
+                                      {/* Bottom section with timer and buttons */}
+                                      <div className="bonusBlock_other__bottom p-2">
+                                        <div className="timer_block_container d-flex align-items-center">
+                                          {/* Action buttons */}
+                                          <div className="bonus_bottom_btn red_clr w-100">
+                                            <button className="btn btn-red w-100">
+                                              Get bonus
+                                            </button>
+                                            <button className="btn btn-outline-light w-100">
+                                              Details
+                                            </button>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                          <div className="bouns_sec p-2">
-                            <div className="card bonus_card">
-                              <div className="card-body p-0">
-                                <div className="bonus_card_sec">
-                                  {/* Top section with text and image */}
-                                  <div className="bonus_sec_top p-4 py-2">
-                                    <div className="bonus_sec_content">
-                                      <span>Casino</span>
-                                      <span className="text-shadow">
-                                        <p>75% Crash Power Bonus</p>
-                                      </span>
-                                    </div>
-                                  </div>
-                                  {/* Bottom section with timer and buttons */}
-                                  <div className="bonusBlock_other__bottom p-2">
-                                    <div className="timer_block_container d-flex align-items-center">
-                                      {/* Action buttons */}
-                                      <div className="bonus_bottom_btn red_clr w-100">
-                                        <button className="btn btn-red w-100">
-                                          Get bonus
-                                        </button>
-                                        <button className="btn btn-outline-light w-100">
-                                          Details
-                                        </button>
+
+                            <div className="col-lg-6">
+                              <div className="bouns_sec ">
+                                <div className="card bonus_card">
+                                  <div className="card-body p-0">
+                                    <div className="bonus_card_sec">
+                                      {/* Top section with text and image */}
+                                      <div className="bonus_sec_top p-4 py-2">
+                                        <div className="bonus_sec_content">
+                                          <span>Casino</span>
+                                          <span className="text-shadow">
+                                            <p>75% Crash Power Bonus</p>
+                                          </span>
+                                        </div>
+                                      </div>
+                                      {/* Bottom section with timer and buttons */}
+                                      <div className="bonusBlock_other__bottom p-2">
+                                        <div className="timer_block_container d-flex align-items-center">
+                                          {/* Action buttons */}
+                                          <div className="bonus_bottom_btn red_clr w-100">
+                                            <button className="btn btn-red w-100">
+                                              Get bonus
+                                            </button>
+                                            <button className="btn btn-outline-light w-100">
+                                              Details
+                                            </button>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
@@ -1949,34 +2408,109 @@ function Home() {
                         role="dialog"
                         style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
                       >
-                        <div className="modal-dialog modal-dialog-centered modal-sm justify-content-center">
+                        <div className="modal-dialog modal-dialog-centered modal-sm justify-content-center voucher_pop_up">
                           <div
                             className="modal-content"
                             style={{ width: "240px" }}
                           >
                             <div className="modal-body d-flex flex-column align-items-center">
+                              {/* =================================================================== */}
+                              {/* <!-- Overlay --> */}
+                              <div class="modal-overlay">
+                                {/* <!-- Voucher Card --> */}
+                                <div class="voucher-card">
+                                  <img
+                                    src="https://static.vecteezy.com/system/resources/thumbnails/045/822/274/small/discount-voucher-with-golden-coins-icon-3d-render-concept-of-3d-discount-coupon-icon-illustration-png.png"
+                                    alt="Voucher Icon"
+                                  />
+
+                                  <div class="voucher-info mt-0">
+                                    {result?.type === "error" ? (
+                                      <div className="fw-700 fs-13  mb-1 text-danger">
+                                        {/* {result?.message} */}
+                                        <div class="voucher-title">
+                                          🎁 Already Claimed Bonus!
+                                        </div>
+                                        <div class="voucher-message">
+                                          Enjoy your games and win big! 🎮💰
+                                        </div>
+                                        {/* <p>Bonus Added Successfully!</p> */}
+                                      </div>
+                                    ) : (
+                                      <>
+                                        <div className="fw-700 fs-13 mb-1 text-white">
+                                          {/* {result?.message} */}
+                                          <div class="voucher-title green_light">
+                                            🎉 Congratulations!
+                                          </div>
+                                          <div class="voucher-message">
+                                            🎁 Bonus Added Successfully!
+                                          </div>
+                                          <p className="fw-400 fs-14 mb-1 text-white">
+                                            Your free bonus has been credited —
+                                            start playing and win big with
+                                            Betwin Namibia! 💎💰
+                                          </p>
+                                        </div>
+                                      </>
+                                    )}
+
+                                    <div className="text-center"></div>
+
+                                    {typeof result?.amount !== "undefined" && (
+                                      <div
+                                        className="fw-bold text-success mb-3"
+                                        style={{ fontSize: 22 }}
+                                      >
+                                        {CURRENCY_SYMBOL}
+                                        {new Intl.NumberFormat("en-IN").format(
+                                          result.amount
+                                        )}
+                                      </div>
+                                    )}
+
+                                    <Link to={routes.home}>
+                                      <span
+                                        className="btn text-white green-bg"
+                                        onClick={() => setShowModal(false)}
+                                      >
+                                        Thank You
+                                      </span>
+                                    </Link>
+
+                                    <div class="footer-note">
+                                      For Choosing Betwin Nambia
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              {/* ================================================================================================== */}
                               <img
-                                src="assets/img/icons/rupee.gif"
+                                src="https://static.vecteezy.com/system/resources/thumbnails/045/822/274/small/discount-voucher-with-golden-coins-icon-3d-render-concept-of-3d-discount-coupon-icon-illustration-png.png"
                                 alt="rupee"
                                 className="mb-2 w-75"
                               />
 
-                              <div
-                                className={`fw-700 fs-13 text-center mb-1 ${
-                                  result?.type === "error"
-                                    ? "text-danger"
-                                    : "text-black"
-                                }`}
-                              >
-                                {result?.message}
-                              </div>
+                              {result?.type === "error" ? (
+                                <div className="fw-700 fs-13 text-center mb-1 text-danger">
+                                  {result?.message}
+                                  <p>Bonus Already Claimed!</p>
+                                </div>
+                              ) : (
+                                <>
+                                  <div className="fw-400 fs-10 text-center mb-1 text-white">
+                                    {/* {result?.message} */}
+                                    <p>Bonus Added Successfully!</p>
+                                  </div>
+                                </>
+                              )}
 
                               {typeof result?.amount !== "undefined" && (
                                 <div
                                   className="fw-bold text-success mb-3"
                                   style={{ fontSize: 22 }}
                                 >
-                                  ₹
+                                  {CURRENCY_SYMBOL}
                                   {new Intl.NumberFormat("en-IN").format(
                                     result.amount
                                   )}
@@ -1992,8 +2526,8 @@ function Home() {
                                 </span>
                               </Link>
 
-                              <span className="text-dark-grey fs-10 fw-700 mt-3">
-                                For Choosing jiboomba
+                              <span className="text-white fs-10 fw-700 mt-3">
+                                For Choosing Betwin Nambia
                               </span>
                             </div>
                           </div>
@@ -2012,3 +2546,9 @@ function Home() {
 }
 
 export default Home;
+
+const MyClose = ({ closeToast }) => (
+  <button onClick={closeToast} className="toaster_close_btn">
+    ×
+  </button>
+);
