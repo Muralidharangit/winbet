@@ -1351,188 +1351,7 @@ const promotions = [
                       </div>
 
 
-                                                    <div className="">
-                                                    <div className="top-matches-title d-flex align-items-center justify-content-between   my-3">
-                                                        <div className="d-flex">
-                                                            <img
-                                                                src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
-                                                                width="27"
-                                                                alt="Games Type Icon"
-                                                            />
-                                                            <h5 className="m-0 ms-2">Support Terms</h5>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="row g-3">
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/bonuses.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Level-up Bonuses
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Level up for bigger rewards
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/cashback.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Enhanced Cashback
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Get more with every bet you make
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/game-access.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Early Game Access
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Be the first to try the newest games
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/gifts.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Receive Gifts
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Enjoy frequent gifts and special treatment
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/giveaways.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Luxury Giveaways
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Enter raffles and win some truly luxurious
-                                                                        prizes
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/support.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Priority Support
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Skip the queues and get back to your games fast
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/tournaments.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Exclusive Tournaments
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Compete against the best of the best in VIP-only
-                                                                        events
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/fast-payout.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">Fast Payouts</h5>
-                                                                    <p className="advantages-para">
-                                                                        Access your winnings faster than ever
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-
-                      {/* hot games */}
-
-                      {/* Games Types */}
+                       {/* Games Types */}
 
                       <div className="game-types-section  tabd-none">
                         {/* Games Type Header */}
@@ -1978,6 +1797,190 @@ const promotions = [
                         {/* </div> */}
                       </>
 
+
+
+                                                    <div className="">
+                                                    <div className="top-matches-title d-flex align-items-center justify-content-between   my-3">
+                                                        <div className="d-flex">
+                                                            <img
+                                                                src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
+                                                                width="27"
+                                                                alt="Games Type Icon"
+                                                            />
+                                                            <h5 className="m-0 ms-2">Support Terms</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="row g-3">
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/bonuses.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Level-up Bonuses
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Level up for bigger rewards
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/cashback.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Enhanced Cashback
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Get more with every bet you make
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/game-access.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Early Game Access
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Be the first to try the newest games
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/gifts.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Receive Gifts
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Enjoy frequent gifts and special treatment
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/giveaways.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Luxury Giveaways
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Enter raffles and win some truly luxurious
+                                                                        prizes
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/support.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Priority Support
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Skip the queues and get back to your games fast
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/tournaments.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Exclusive Tournaments
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Compete against the best of the best in VIP-only
+                                                                        events
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/fast-payout.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">Fast Payouts</h5>
+                                                                    <p className="advantages-para">
+                                                                        Access your winnings faster than ever
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                      {/* hot games */}
+
+                     
                       {/* games types end */}
                       {/* games types end */}
 
