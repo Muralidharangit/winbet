@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import routes from "../../routes/route";
 import AuthContext from "../../../Auth/AuthContext";
 import { verifyToken } from "../../../API/authAPI";
@@ -163,7 +163,7 @@ const StickyHeader = ({ onToggleSidebar }) => {
                       className="navbar-brand m-0 position-relative"
                       to={routes.home}
                     >
-                      <img src={Images.Favlogo} alt="favicon" width="55%" />
+                      <img src={Images.Favlogo2} alt="favicon" width="65%" />
                       {/* <Link
                         to={routes.pages.testinginfo}
                         style={{
@@ -273,7 +273,7 @@ const StickyHeader = ({ onToggleSidebar }) => {
                       </button>
                     </Link>
                     <Link to={routes.auth.register}>
-                      <button type="button" className="btn btn-index w-100">
+                      <button type="button" className="btn btn-index w-100 text-black">
                         Sign up
                       </button>
                     </Link>
@@ -298,20 +298,204 @@ const StickyHeader = ({ onToggleSidebar }) => {
               </Link>
             </div>
             <div className="navbar-menu-wrapper d-flex align-items-stretch">
+            <button
+  className="navbar-toggler align-self-center"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#offcanvasRight"
+  aria-controls="offcanvasRight"
+>
+  {/* <i className="fi fi-br-bars-sort" style={{ color: "#fff" }} /> */}
+   {/* <i class="fi fi-rr-apps-add" style={{ color: "#fff" }}/> */}
+   {/* <i class="fi fi-br-menu-burger" style={{ color: "#fff" }}></i>  */}
+   {/* <i class="fi fi-sr-menu-burger" style={{ color: "#fff" }}></i>  */}
+{/* <i class="fi fi-rs-angle-double-small-left" style={{ color: "#fff" }}></i> */}
+<i class="fi fi-rs-apps-add" style={{ color: "#fff" }}></i>
+   {/* <i class="fi fi-br-bars-staggered" style={{ color: "#fff" }}></i> */}
+</button>
+
+<div
+  className="offcanvas offcanvas-end offcanva-voliet"
+  tabIndex={-1}
+  id="offcanvasRight"
+  aria-labelledby="offcanvasRightLabel"
+>
+ <div className="offcanvas-header justify-content-between">
+  <h5 className="offcanvas-title">Menus</h5>
+
+  <button
+    type="button"
+    className="btn p-0 border-0"
+    data-bs-dismiss="offcanvas"
+    aria-label="Close"
+  >
+    <i className="fa-solid fa-xmark fs-4 text-white"></i>
+
+   
+  </button>
+</div>
+
+  <div className="offcanvas-body pt-0">
+    <nav
+        className={`sidebar sidebar-offcanvas d-block `}
+        id="sidebar"
+      >
+        <ul className="nav">
+          <li className="nav-item">
+            <NavLink
+              to={routes.home}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">Home</span>
+              <i className="fi fi-sr-home menu-icon" />
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to={routes.games.topGames}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">All Games</span>
+              <i className="fi fi-sr-dice-alt menu-icon" />
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to="/filtered-games?type=card"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">Live Casino</span>
+              <i className="fi fi-rr-playing-cards menu-icon" />
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to="/filtered-games?type=crash"
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">Crash Games</span>
+              <i className="fa-solid fa-explosion menu-icon"></i>
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to={routes.games.providers}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">Providers</span>
+              <i className="fi fi-rs-clipboard menu-icon" />
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to={routes.transactions.kazang_how_to_deposit}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">How To Deposit</span>
+              <i className="fi fi-rs-memo-pad menu-icon" />
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to={routes.pages.howToPlay}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">How to Play</span>
+              <i className="fi fi-rr-interrogation menu-icon" />
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to={routes.pages.terms}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">Terms and Conditions</span>
+              <i className="fi fi-rs-memo-pad menu-icon" />
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink
+              to={routes.pages.privacyPolicy}
+              className={({ isActive }) =>
+                `nav-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="menu-title">Privacy and policy</span>
+              <i className="fi fi-rs-clipboard menu-icon" />
+            </NavLink>
+          </li>
+        </ul>
+        <div className="br-top-gray"></div>
+        <div className="min-menunone">
+          <div className="container px-5">
+            <Link to={routes.games.all}>
               <button
-                className="navbar-toggler navbar-toggler align-self-center"
                 type="button"
-                data-toggle="minimize"
-                onClick={handleToggleSidebar}
+                className="btn swiper-scrollbar-drag w-100 bgbody-color text-white rounded-pill fs-15 fw-500 text-black"
               >
-                {/* <span class="mdi mdi-menu"></span> */}
-                {/* <i class="fi fi-rr-apps-add " style="color:#e4e4e4;"></i> */}
-                <i
-                  className="fi fi-br-bars-sort"
-                  style={{ color: "#e4e4e4" }}
-                />
+                All Games
               </button>
-              <div className="search-field d-none d-md-block">
+            </Link>
+          </div>
+          <div className="text-center  bottom-0 w-100 my-3 start-0">
+            <div className="icon-social">
+              <div className="d-flex justify-content-center  text-white fs-25 gap-3">
+                <Link
+                  to="https://www.facebook.com/betwinnamibia"
+                  target="new"
+                  className="text-white"
+                >
+                  <i className="ri-facebook-fill" />
+                </Link>
+                <Link
+                  to={"https://www.instagram.com/betwin_namibia"}
+                  target="new"
+                  className="text-white"
+                >
+                  <i className="ri-instagram-line" />
+                </Link>
+
+                <Link
+                  to={"https://x.com/BetWin2025"}
+                  target="new"
+                  className="text-white"
+                >
+                  <i className="ri-twitter-x-line" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+  </div>
+</div>
+
+  <div className="search-field d-none d-md-block">
                 <form className="d-flex align-items-center h-100" action="#">
                   <div className="search-container position-relative">
                     <Link to={routes.games.topGames}>
@@ -322,6 +506,31 @@ const StickyHeader = ({ onToggleSidebar }) => {
                   </div>
                 </form>
               </div>
+
+           <div className="collapse navbar-collapse justify-content-center d-none d-xl-flex">
+            <ul className="navbar-nav header-center-menu">
+              <li className="nav-item">
+                <NavLink to="/" className="nav-link">Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/games" className="nav-link">All Games</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/bonus" className="nav-link highlight">Bonus</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/hot-games" className="nav-link">Hot Games</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/terms" className="nav-link">Terms & Conditions</NavLink>
+              </li>
+            </ul>
+          </div>
+
+
+
+
+            
               <ul className="navbar-nav navbar-nav-right">
                 {/* <li>
     <button class="btn btn-outline-light rounded-2 me-2"> {CURRENCY_SYMBOL}50,000</button>
@@ -331,6 +540,8 @@ const StickyHeader = ({ onToggleSidebar }) => {
     <button type="button" class="btn  btn-index w-100  "> Deposit</button>
     </a>
   </li> */}
+
+  
 
                 {/* if user login Starts */}
                 {/* If Logged In */}
@@ -762,13 +973,13 @@ const StickyHeader = ({ onToggleSidebar }) => {
                     <Link to={routes.auth.login}>
                       <button
                         type="button"
-                        className="btn btn-index w-100 bgbody-color"
+                        className="btn btn-index w-100 bg-transparent"
                       >
                         Log in
                       </button>
                     </Link>
                     <Link to={routes.auth.register}>
-                      <button type="button" className="btn btn-index w-100">
+                      <button type="button" className="btn btn-index w-100 text-black">
                         Sign up
                       </button>
                     </Link>
@@ -810,6 +1021,11 @@ const StickyHeader = ({ onToggleSidebar }) => {
             </div>
           </nav>
           {/* tab and laptopnav */}
+
+
+          {/* offcanva */}
+
+        
         </>
       </>
     </SkeletonTheme>

@@ -810,6 +810,36 @@ const LUCKY6_GAME = {
   has_lobby: 0,
   has_tables: 0,          
 };
+
+
+const promotions = [
+        {
+            title: "Weekly Raffle",
+            description: "Share in $75,000 each week",
+            img: "assets/img/banner/pro-1.png",
+        },
+        {
+            title: "Daily Bonus",
+            description: "Get extra spins every day",
+            img: "assets/img/banner/promotion-1.png",
+        },
+        {
+            title: "VIP Rewards",
+            description: "Exclusive prizes for VIP members",
+            img: "assets/img/banner/pro-3.png",
+        },
+        {
+            title: "Daily Bonus",
+            description: "Get extra spins every day",
+            img: "assets/img/banner/promotion-2.png",
+        },
+        {
+            title: "Weekly Raffle",
+            description: "Share in $75,000 each week",
+            img: "assets/img/banner/pro-2.png",
+        },
+        // Add more promotions here
+    ];
   return (
     <>
       {/* header  */}
@@ -884,7 +914,7 @@ const LUCKY6_GAME = {
                             <Swiper
                               className="mySwiper"
                               modules={[Navigation, Pagination, Autoplay]}
-                              spaceBetween={30}
+                              spaceBetween={15}
                               slidesPerView={1}
                               pagination={{ clickable: true }}
                               autoplay={{
@@ -896,13 +926,13 @@ const LUCKY6_GAME = {
                                   slidesPerView: 2, // Tablet view
                                 },
                                 1024: {
-                                  slidesPerView: 3, // Laptop/Desktop view
+                                  slidesPerView: 1, // Laptop/Desktop view
                                 },
                               }}
                             >
                               <SwiperSlide onClick={() => handleGameClick(Aviator)}>
                                 <img
-                                  src="assets/img/slider/8.png"
+                                  src="assets/img/slider/bn3.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 6"
                                 />
@@ -910,7 +940,7 @@ const LUCKY6_GAME = {
 
                                <SwiperSlide onClick={() => handleGameClick(LUCKY6_GAME)}>
                                 <img
-                                  src="assets/img/slider/lucky 6.png"
+                                  src="assets/img/slider/bn2.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 5"
                                 />
@@ -921,7 +951,7 @@ const LUCKY6_GAME = {
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/first6.png"
+                                  src="assets/img/slider/bn1.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 6"
                                 />
@@ -932,7 +962,7 @@ const LUCKY6_GAME = {
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/first2.png"
+                                  src="assets/img/slider/bn4.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 2"
                                 />
@@ -946,7 +976,7 @@ const LUCKY6_GAME = {
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/bingo banner.png"
+                                  src="assets/img/slider/bn5.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 2"
                                 />
@@ -958,7 +988,7 @@ const LUCKY6_GAME = {
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/first1.png"
+                                  src="assets/img/slider/bn6.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 1" // Improved alt text
                                 />
@@ -970,7 +1000,7 @@ const LUCKY6_GAME = {
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/10.png"
+                                  src="assets/img/slider/bn7.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 6"
                                 />
@@ -982,7 +1012,7 @@ const LUCKY6_GAME = {
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/first7.png"
+                                  src="assets/img/slider/bn8.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 3"
                                 />
@@ -998,17 +1028,7 @@ const LUCKY6_GAME = {
                                 />
                               </SwiperSlide> */}
 
-                              <SwiperSlide
-                                onClick={() =>
-                                  navigate(`/filtered-games?search=card`)
-                                }
-                              >
-                                <img
-                                  src="assets/img/slider/9.png"
-                                  className="w-100 rounded-2"
-                                  alt="Gaming Banner Slide 6"
-                                />
-                              </SwiperSlide>
+                            
                             </Swiper>
                           )}
                         </div>
@@ -1068,7 +1088,7 @@ const LUCKY6_GAME = {
                           <Swiper
                             className="mySwiper"
                             modules={[Autoplay, FreeMode]}
-                            spaceBetween={5}
+                            spaceBetween={10}
                             loop={true}
                             autoplay={{ delay: 0, disableOnInteraction: false }}
                             speed={3000}
@@ -1098,23 +1118,23 @@ const LUCKY6_GAME = {
                               diceGames.map((game, index) => (
                                 <SwiperSlide key={game.uuid || index}>
                                   <div
-                                    className="game-card-wrapper rounded-2 new-cardclr"
+                                    className="game-card-wrapper rounded-2 "
                                     onClick={() => handleGameClick(game)}
                                   >
-                                    <div className="game-card p-0 m-0 p-1 ">
-                                      <img
-                                        src={
-                                          game.image
-                                            ? game.image
-                                            : "assets/img/play_now.png"
-                                        }
-                                        className="game-card-img position-relative"
-                                        alt={game.name}
-                                      />
-                                      <div className="btn-play position-absolute top-50 start-50 translate-middle">
-                                        <i className="fa-solid fa-play"></i>
-                                      </div>
-                                    </div>
+                                    <div className="game-card newclr">
+  <div className="game-img-container">
+    <img
+      src={game.image || "assets/img/play_now.png"}
+      className="game-card-img"
+      alt={game.name}
+    />
+  </div>
+
+  <div className="btn-play position-absolute top-50 start-50 translate-middle">
+    <i className="fa-solid fa-play"></i>
+  </div>
+</div>
+
                                   </div>
                                 </SwiperSlide>
                               ))
@@ -1274,6 +1294,241 @@ const LUCKY6_GAME = {
                         </div>
                       </SkeletonTheme>
                       {/* hot games */}
+
+
+
+                      <div>
+                                                <div className="top-matches-title d-flex align-items-center justify-content-between my-3">
+                                                    <div className="d-flex">
+                                                        <span className="dot" />
+                                                        <h5 className="m-0 ms-2 d-flex align-items-center">
+                                                            Bonus & Offer
+                                                        </h5>
+                                                    </div>
+                                                    <div >
+                                                        <span className="text-white fs-13 fw-500 right_heading">
+                                                            All <i className="ri-arrow-right-s-line" />
+                                                        </span>
+                                                    </div>
+                                                </div>
+
+                                                <Swiper
+                                                    modules={[Navigation, Pagination]}
+                                                    spaceBetween={10}
+                                                    slidesPerView={3}
+                                                    pagination={{clickable: true}}
+                                                    loop={true}
+                                                    breakpoints={{
+                                                        0: {slidesPerView: 1},
+                                                        576: {slidesPerView: 2},
+                                                        992: {slidesPerView: 3},
+                                                    }}
+                                                >
+                                                    {promotions.map((promo, index) => (
+                                                        <SwiperSlide key={index}>
+                                                            <div
+                                                                className="promotion-header p-3 rounded cursor-pointer"
+                                                                onClick={() => navigate()}
+                                                            >
+                                                                <div className="row align-items-center">
+                                                                    <div className="col-6">
+                                                                        <span>Promotion</span>
+                                                                        <h5>{promo.title}</h5>
+                                                                        <p>{promo.description}</p>
+                                                                    </div>
+                                                                    <div className="col-6">
+                                                                        <img
+                                                                            src={promo.img}
+                                                                            alt={promo.title}
+                                                                            className="img-fluid rounded"
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </SwiperSlide>
+                                                    ))}
+                                                </Swiper>
+                      </div>
+
+
+                                                    <div className="">
+                                                    <div className="top-matches-title d-flex align-items-center justify-content-between   my-3">
+                                                        <div className="d-flex">
+                                                            <img
+                                                                src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
+                                                                width="27"
+                                                                alt="Games Type Icon"
+                                                            />
+                                                            <h5 className="m-0 ms-2">Support Terms</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="row g-3">
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/bonuses.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Level-up Bonuses
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Level up for bigger rewards
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/cashback.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Enhanced Cashback
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Get more with every bet you make
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/game-access.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Early Game Access
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Be the first to try the newest games
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/gifts.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Receive Gifts
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Enjoy frequent gifts and special treatment
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/giveaways.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Luxury Giveaways
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Enter raffles and win some truly luxurious
+                                                                        prizes
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/support.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Priority Support
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Skip the queues and get back to your games fast
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/tournaments.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Exclusive Tournaments
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Compete against the best of the best in VIP-only
+                                                                        events
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/fast-payout.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">Fast Payouts</h5>
+                                                                    <p className="advantages-para">
+                                                                        Access your winnings faster than ever
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
 
                       {/* hot games */}
 
@@ -1558,7 +1813,7 @@ const LUCKY6_GAME = {
                               </a>
                             </div> */}
                           </div>
-                          <div className="d-flex gap-2">
+                          <div className="d-flex gap-1 mb-3">
                             <div className="col-4 ">
                               <div
                                 className="card bg-cardtrans p-1"
@@ -1585,33 +1840,9 @@ const LUCKY6_GAME = {
                               </div>
                             </div>
                             <div className="col-4 ">
-                              <div
-                                className="card bg-cardtrans p-1"
-                                style={{
-                                  backgroundImage:
-                                    "linear-gradient(to left, rgb(35 105 157 / 44%), transparent 75%) !important",
-                                }}
-                              >
-                                <div
-                                  className="flex-column d-flex"
-                                  onClick={() =>
-                                    navigate(`/filtered-games?search=instant`)
-                                  }
-                                >
-                                  <span className="text-white fw-500 fs-13  py-2 px-1">
-                                    Instant
-                                  </span>
-                                  <img
-                                    src="assets/img/sports.png"
-                                    alt=""
-                                    srcSet=""
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-4 ">
-                              <div className="d-flex  flex-wrap  gap-2">
-                                <div className="w-45 ">
+                             <div className="col-12 ">
+                              <div className="d-flex flex-wrap">
+                                <div className="col-6 mb-2">
                                   <div
                                     className="card bg-cardtrans p-1"
                                     style={{
@@ -1639,7 +1870,7 @@ const LUCKY6_GAME = {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="w-45 ">
+                                <div className="col-6 mb-2">
                                   <div
                                     className="card bg-cardtrans p-1"
                                     style={{
@@ -1664,7 +1895,7 @@ const LUCKY6_GAME = {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="w-45 pt-2">
+                                <div className="col-6 ">
                                   <div
                                     className="card bg-cardtrans p-1"
                                     style={{
@@ -1687,7 +1918,7 @@ const LUCKY6_GAME = {
                                     </div>
                                   </div>
                                 </div>
-                                <div className="w-45 pt-2">
+                                <div className="col-6">
                                   <div
                                     className="card bg-cardtrans p-1"
                                     style={{
@@ -1713,8 +1944,38 @@ const LUCKY6_GAME = {
                                 </div>
                               </div>
                             </div>
+                            </div>
+                             <div className="col-4 ">
+                              <div
+                                className="card bg-cardtrans p-1"
+                                style={{
+                                  backgroundImage:
+                                    "linear-gradient(to left, rgb(35 105 157 / 44%), transparent 75%) !important",
+                                }}
+                              >
+                                <div
+                                  className="flex-column d-flex"
+                                  onClick={() =>
+                                    navigate(`/filtered-games?search=instant`)
+                                  }
+                                >
+                                  <span className="text-white fw-500 fs-13  py-2 px-1">
+                                    Instant
+                                  </span>
+                                  <img
+                                    src="assets/img/sports.png"
+                                    alt=""
+                                    srcSet=""
+                                  />
+                                </div>
+                              </div>
+                            </div>
+
                           </div>
-                        </div>
+                           
+                          
+                          </div>
+                        {/* </div> */}
                       </>
 
                       {/* games types end */}
@@ -1904,6 +2165,118 @@ const LUCKY6_GAME = {
 
                       {/* Marquee runing */}
 
+
+                    {/* deposite card */}
+                      <div className="bonus-offer-section my-4">
+                                                    <div className="container">
+                                                        <div className="row align-items-center bg-gradient-box text-white p-4 rounded-4">
+                                                            {/* LEFT SIDE */}
+                                                            <div className="col-lg-6 mb-4 ">
+                                                                <h4 className="small mb-2">WELCOME BONUS OFFER</h4>
+
+                                                                <h2 className="fw-bold display-6">
+                                                                    500% BONUS UP TO $90,000 + <br />
+                                                                    <span className="text-warning">100 FREE SPINS</span>
+                                                                </h2>
+
+                                                                <p className="mt-3 opacity-75">
+                                                                    Play with up to $90,000 on your first three deposits
+                                                                </p>
+
+                                                                <button
+                                                                    // onClick={handleDepositClick}
+                                                                    className="btn btn-cyan mt-4 px-4 py-2 fw-bold"
+                                                                >
+                                                                    Deposit Now
+                                                                </button>
+                                                            </div>
+
+                                                            {/* RIGHT SIDE */}
+                                                            <div className="col-lg-6 text-start text-md-start text-lg-end">
+                                                                <i
+                                                                    className="fa-solid fa-gift mb-3"
+                                                                    style={{
+                                                                        fontSize: "80px",
+                                                                        color: "#ffffffff",
+                                                                    }}
+                                                                ></i>
+
+                                                                {/* Payment Method */}
+                                                                <div className="mt-3">
+                                                                    <h6 className="mb-3">Payment Method</h6>
+
+                                                                    <div className="d-flex justify-content-start justify-content-lg-end overflow-hidden gap-2 mt-2">
+                                                                        <img
+                                                                            src="assets/img/payment-icon/google-pay.svg"
+                                                                            className="icon-40"
+                                                                            alt=""
+                                                                        />
+                                                                        <img
+                                                                            src="assets/img/payment-icon/bank-transfer-square.svg"
+                                                                            className="icon-40"
+                                                                            alt=""
+                                                                        />
+                                                                        <img
+                                                                            src="assets/img/payment-icon/imps-square.svg"
+                                                                            className="icon-40"
+                                                                            alt=""
+                                                                        />
+                                                                        <img
+                                                                            src="assets/img/payment-icon/paytm-square.svg"
+                                                                            className="icon-40"
+                                                                            alt=""
+                                                                        />
+                                                                        <img
+                                                                            src="assets/img/payment-icon/phonepe-square.svg"
+                                                                            className="icon-40"
+                                                                            alt=""
+                                                                        />
+                                                                        <img
+                                                                            src="assets/img/payment-icon/upi-square.svg"
+                                                                            className="icon-40"
+                                                                            alt=""
+                                                                        />
+                                                                        <img
+                                                                            src="assets/img/payment-icon/visa-square.svg"
+                                                                            className="icon-40"
+                                                                            alt=""
+                                                                        />
+                                                                    </div>
+                                                                </div>
+
+                                                                {/* Accepted Currency */}
+                                                                <div className="mt-4">
+                                                                    <h6 className="mb-3">Accepted Currency</h6>
+
+                                                                    <div className="currency-icon d-flex justify-content-start justify-content-lg-end gap-2 mt-2">
+                                                                        <i
+                                                                            className="fi fi-rr-coin icon-30"
+                                                                            title="Bitcoin"
+                                                                        ></i>
+                                                                        <i
+                                                                            className="fi fi-rr-diamond icon-30"
+                                                                            title="Ethereum"
+                                                                        ></i>
+                                                                        {/* <i
+                                      className="fi fi-rr-dollar-circle icon-30"
+                                      title="USDT"
+                                    ></i> */}
+
+                                                                        <i
+                                                                            className="fi fi-rr-exchange icon-30"
+                                                                            title="Litecoin"
+                                                                        ></i>
+                                                                        <i
+                                                                            className="fi fi-rr-hexagon icon-30"
+                                                                            title="BNB"
+                                                                        ></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                      </div>
+
                       {/* Marquee end */}
 
                       {/* Dice of games all filer */}
@@ -1979,26 +2352,24 @@ const LUCKY6_GAME = {
                               smartSoftGames.map((game, index) => (
                                 <SwiperSlide key={game.uuid || index}>
                                   <div className="game-card-wrapper rounded-2 new-cardclr">
-                                    <div className="game-card p-0 m-0 p-1">
-                                      <img
-                                        src={
-                                          game.image
-                                            ? game.image
-                                            : "assets/img/play_now.png"
-                                        }
-                                        className="game-card-img"
-                                        alt={game.name}
-                                      />
-                                      <div className="btn-play position-absolute top-50 start-50 translate-middle">
-                                        <i className="fa-solid fa-play"></i>
-                                      </div>
-                                      {/* <div className="d-flex flex-column text-white text-center py-2 px-1">
-                              <span className="fs-12 fw-bold text-truncate">
-                                {game.name}
-                              </span>
-                              <span className="fs-10">Duel</span>
-                            </div> */}
+                                    <div className="game-card newclr">
+                                        <div className="game-img-container">
+    <img
+      src={game.image || "assets/img/play_now.png"}
+      className="game-card-img"
+      alt={game.name}
+    />
+  </div>
+
+   <div className="btn-play position-absolute top-50 start-50 translate-middle">
+    <i className="fa-solid fa-play"></i>
+  </div>
+
                                     </div>
+
+                                  
+
+                                    
                                     <div className="game-play-button d-flex flex-column">
                                       <div
                                         className="btn-play"
@@ -2008,6 +2379,8 @@ const LUCKY6_GAME = {
                                       </div>
                                     </div>
                                   </div>
+
+                                
                                 </SwiperSlide>
                               ))
                             ) : (
@@ -2294,98 +2667,7 @@ const LUCKY6_GAME = {
                       {/* Marquee end */}
 
                       {/*---bonus------*/}
-                      <div>
-                        <div className="">
-                          <div className="top-matches-title d-flex align-items-center gap-2  my-3 justify-content-between">
-                            <div className="d-flex align-items-center">
-                              <img
-                                src="assets/img/coin.png"
-                                alt="coin"
-                                srcSet=""
-                                width=""
-                              />{" "}
-                              <h5 className="m-0 ms-2">Bonus </h5>
-                            </div>
-                            {/* <Link to="/bonus">
-                              <div>
-                                <span className="text-white fs-13 fw-500 right_heading">
-                                  All <i className="ri-arrow-right-s-line" />
-                                </span>
-                              </div>
-                            </Link> */}
-                          </div>
-
-                          <div className="row px-0">
-                            <div className="col-lg-6 mb-3">
-                              <div className="bouns_sec">
-                                <div className="card bonus_card">
-                                  <div className="card-body p-0">
-                                    <div className="bonus_card_sec">
-                                      {/* Top section with text and image */}
-                                      <div className="bonus_sec_top p-4 py-2">
-                                        <div className="bonus_sec_content">
-                                          <span>Casino</span>
-                                          <span className="text-shadow">
-                                            <p>100% Crash Power Bonus</p>
-                                          </span>
-                                        </div>
-                                      </div>
-                                      {/* Bottom section with timer and buttons */}
-                                      <div className="bonusBlock_other__bottom p-2">
-                                        <div className="timer_block_container d-flex align-items-center">
-                                          {/* Action buttons */}
-                                          <div className="bonus_bottom_btn red_clr w-100">
-                                            <button className="btn btn-red w-100">
-                                              Get bonus
-                                            </button>
-                                            <button className="btn btn-outline-light w-100">
-                                              Details
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="col-lg-6">
-                              <div className="bouns_sec ">
-                                <div className="card bonus_card">
-                                  <div className="card-body p-0">
-                                    <div className="bonus_card_sec">
-                                      {/* Top section with text and image */}
-                                      <div className="bonus_sec_top p-4 py-2">
-                                        <div className="bonus_sec_content">
-                                          <span>Casino</span>
-                                          <span className="text-shadow">
-                                            <p>75% Crash Power Bonus</p>
-                                          </span>
-                                        </div>
-                                      </div>
-                                      {/* Bottom section with timer and buttons */}
-                                      <div className="bonusBlock_other__bottom p-2">
-                                        <div className="timer_block_container d-flex align-items-center">
-                                          {/* Action buttons */}
-                                          <div className="bonus_bottom_btn red_clr w-100">
-                                            <button className="btn btn-red w-100">
-                                              Get bonus
-                                            </button>
-                                            <button className="btn btn-outline-light w-100">
-                                              Details
-                                            </button>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                 
 
                       {/*----bonus-end---*/}
 
@@ -2479,7 +2761,7 @@ const LUCKY6_GAME = {
                                     </Link>
 
                                     <div class="footer-note">
-                                      For Choosing Betwin Nambia
+                                      For Choosing Winbet Nambia
                                     </div>
                                   </div>
                                 </div>
@@ -2527,7 +2809,7 @@ const LUCKY6_GAME = {
                               </Link>
 
                               <span className="text-white fs-10 fw-700 mt-3">
-                                For Choosing Betwin Nambia
+                                For Choosing Winbet Nambia
                               </span>
                             </div>
                           </div>

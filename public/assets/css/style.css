@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 :root {
-  --primary-color: #e4063b;
-  --primary-border-color: #e4063ace;
+  --primary-color:#ffb533;
+  --primary-border-color: #ffb533;
   --light-grey-color: #555555b5;
   --secondary-color: #f8f9fa;
   --text-color: #333;
@@ -17,7 +17,7 @@
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  background: #161616;
+  background: #290433;
   overflow-x: hidden;
   /* max-width: 600px; */
 }
@@ -142,9 +142,9 @@ button.btn.btn-login {
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 600;
-  background: var(--primary-color);
+  background: #ffb433;
   color: var(--text-white);
-  border-radius: 40px;
+  border-radius: 6px;
   box-shadow: inset 2px 2px 2px 0 rgba(255, 255, 255, 0.5),
     7px 7px 20px 0 rgba(0, 0, 0, 0.1), 4px 4px 5px 0 rgba(0, 0, 0, 0.1);
   /* background: linear-gradient(103deg, #a71515 4.36%, #e4063b 111.5%); */
@@ -340,15 +340,16 @@ button.btn.btn-index {
   text-transform: uppercase;
   font-size: 13px;
   font-weight: 600;
-  background: var(--primary-color);
-  color: var(--text-white);
-  border-radius: 40px;
+  background: #ffb533;
+  color: #ffffff;
+  border-radius: 5px;
   width: 90px !important;
   height: 30px;
   margin-left: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid #ffffff82;
 }
 
 .h-56 {
@@ -491,7 +492,7 @@ swiper-slide img {
 }
 
 .swiper-scrollbar-drag {
-  background: #e4063b !important;
+  background: #ffcd38 !important;
 }
 
 /*----bonus---*/
@@ -527,7 +528,7 @@ swiper-slide img {
 }
 
 .card {
-  background: none !important;
+  /* background: none !important; */
 }
 
 .card.bonus_card {
@@ -626,9 +627,9 @@ swiper-slide img {
 
 /* Game Card Styles */
 .game-card {
-  margin-bottom: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* margin-bottom: 16px; */
+  border-radius: 0px;
+  /* box-shadow: 0 4px 8px rgb(0 0 0 / 69%); */
   border: 0px solid var(--text-white) !important;
   transition: opacity 0.3s ease, background 0.3s ease;
   background: none !important;
@@ -673,9 +674,7 @@ swiper-slide img {
 }
 
 /*  */
-.game-card-wrapper:hover .game-card {
-  opacity: 0.5;
-}
+
 
 /* .game-card-wrapper:hover .game-play-button {
   opacity: 1 !important;
@@ -693,7 +692,7 @@ swiper-slide img {
 
 .fa-solid.fa-play {
   font-size: 22px;
-  color: #fbfdf2c2;
+  color: #8f1e60;
   position: relative;
   left: 2px;
 }
@@ -739,8 +738,8 @@ swiper-slide img {
   bottom: -60px; /* Initially hidden */
   left: 0;
   width: 600px;
-  background-color: #323738;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #310a3c;
+  box-shadow: 0 -2px 5px rgb(255 255 255 / 8%);
   transition: bottom 0.5s ease-in-out; /* Smooth transition */
   z-index: 1000;
   border-radius: 12px 12px 0 0;
@@ -1450,7 +1449,7 @@ ul.nav.my-2.bonus_filter {
 .nav-link.active {
   color: var(--text-white);
   background-color: var(--bs-nav-tabs-link-active-bg);
-  background: var(--primary-color) !important;
+  background: #370643 !important;
   border-radius: 8px 8px 8px 8px;
   display: flex;
   align-items: center;
@@ -1465,9 +1464,12 @@ ul.nav.my-2.bonus_filter {
 }
 
 .right_heading {
-  /* background: var(--primary-color); */
-  border-radius: 5px;
-  padding: 0 6px;
+  background: var(--primary-color);
+  border-radius: 3px;
+  padding: 3px;
+  color: #000 !important;
+  /* width: 50px !important; */
+  font-size: 12px;
 }
 
 #Profile_offcanvas,
@@ -2083,7 +2085,19 @@ span.status-pending.fw-600 {
 }
 
 .bg-cardtrans {
-  background: rgb(96 116 141 / 10%) !important;
+  /* background: rgb(53 21 58) !important; */
+  background-color: transparent;
+  background-image: linear-gradient(103.77deg, rgb(139, 54, 255) 1.36%, rgba(139, 54, 255, 0.3) 33.14%);
+  background: rgb(97 97 97 / 18%);
+  border: 1px solid rgb(151 151 151 / 68%);
+
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s 
+ease;
+    height: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 li.nav-item button {
   width: max-content !important;
@@ -2094,14 +2108,18 @@ li.nav-item button {
 
 /* Navbar */
 .navbar {
-  background: #000000;
+  /* background: #400649; */
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
   -moz-transition: background 0.25s ease;
   -ms-transition: background 0.25s ease;
-  border-bottom: 1px solid #cccccc21;
+  border-bottom: 1px solid #cccccc8c;
   border-left: 1px solid #cccccc21;
   /* z-index:99999; */
+  left: 0;
+  z-index: 1201;
+  background-color: #37064AC2;
+  height: 70px;
 }
 
 .navbar .navbar-brand {
@@ -2331,9 +2349,9 @@ li.nav-item button {
 
 .navbar .navbar-menu-wrapper .navbar-nav .nav-item .nav-link {
   color: #e4e4e4;
-  font-size: 0.875rem;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  font-size: 16px;
+  margin-left: 0.5rem;
+  margin-right: 1.4rem;
   height: 70px;
   display: -webkit-flex;
   display: flex;
@@ -2682,7 +2700,7 @@ li.nav-item button {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 70px);
-  background: #000000;
+  /* background: #000000; */
   /* font-family: "ubuntu-regular", sans-serif; */
   padding: 0;
   width: 260px;
@@ -2691,14 +2709,16 @@ li.nav-item button {
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease;
-  position: fixed;
-  border-right: 1px solid #cccccc21;
-  border-top: 1px solid #cccccc21;
+  /* position: fixed; */
+  /* border-right: 1px solid #cccccc21; */
+  /* border-top: 1px solid #cccccc21; */
 
   /* Scroll enabled but hidden */
   overflow-y: scroll; /* scrolling works */
   scrollbar-width: none; /* Firefox hide scrollbar */
   -ms-overflow-style: none; /* IE/Edge hide scrollbar */
+  display: none;
+  width: 100%;
 }
 
 .sidebar::-webkit-scrollbar {
@@ -3458,13 +3478,14 @@ li.nav-item button {
 
 .main-panel {
   transition: width 0.25s ease, margin 0.25s ease;
-  width: calc(100% - 260px);
+  /* width: calc(100% - 260px); */
   min-height: calc(100vh - 70px);
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
-  margin-left: 260px;
+  /* margin-left: 260px; */
+  width: 100%;
 }
 
 @media (max-width: 991px) {
@@ -4321,7 +4342,7 @@ li.nav-item button {
 
 .search-container .search-icon i {
   font-size: 18px;
-  color: var(--text-white);
+  color: #fff;
 }
 
 /* STICKY STYLES
@@ -5096,7 +5117,7 @@ section.container.black-red::after {
 .card-log {
   background: var(--text-white);
   border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
   padding: 1.2rem !important;
   width: 100%;
   max-width: 400px;
@@ -5290,10 +5311,18 @@ button.page-link {
 
 swiper-container.mySwiper.new_class4 swiper-slide {
   width: 20% !important;
-  background: var(--card-bg-color) !important;
+  background: #381639 !important;
   margin-right: 10px !important;
   height: 80px;
   border-radius: 8px;
+  border: 1px solid rgb(151 151 151);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s 
+ease;
+  /* height: 100%; */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .game-card-wrapper.rounded-2.new-cardclr.mt-2:hover .game-card.opacity-100 {
@@ -5458,7 +5487,7 @@ swiper-container.mySwiper.new_class4 swiper-slide {
 }
 
 .max-1250 {
-  max-width: 1300px;
+  max-width: 1400px;
 }
 
 .br-top-gray {
@@ -5490,7 +5519,7 @@ nav.sidebar.sidebar-offcanvas.open
   width: 100%;
   -webkit-flex-grow: 1;
   flex-grow: 1;
-  /* background: #000; */
+  background: #2c053200;
   height: 100%;
 }
 
@@ -7011,3 +7040,438 @@ iframe {
   width: 28px;
   height: 28px;
 }
+
+
+.offcanva-voliet{
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+    /* transition: none !important; */
+    border-right: 1px solid #B05CFF3D;
+    background-color: #33064A;
+}
+
+.card-log.bg-transparent.p-0 {
+    padding: 0 !important;
+} 
+/* Card base */
+.new-cardclr.new .game-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* Play button hidden */
+.new-cardclr .game-card .btn-play {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* Dark overlay */
+.new-cardclr .game-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover overlay */
+.new-cardclr.game-card-wrapper:hover .game-card::after {
+  opacity: 1;
+}
+
+/* Hover play button */
+.new-cardclr.game-card-wrapper:hover .btn-play {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+/* Play button style */
+.new-cardclr .btn-play {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 18px;
+  z-index: 10;
+}
+
+/* Lift animation */
+.new-cardclr.game-card-wrapper {
+  transition: transform 0.3s ease;
+}
+
+.new-cardclr.game-card-wrapper:hover {
+  transform: translateY(-6px);
+}
+
+/* Mobile support */
+@media (max-width: 768px) {
+  .new-cardclr .game-card .btn-play {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .new-cardclr .game-card::after {
+    opacity: 0.25;
+  }
+}
+
+
+.bonus-offer-section {
+    /* padding: 40px 0; */
+    /* padding: 20px 0; */
+    background: rgb(97 97 97 / 18%);
+    /* background: linear-gradient(
+        135deg,
+        rgba(15, 239, 248, 0.4) 0%,
+        rgba(15, 239, 248, 0.15) 45%,
+        rgba(15, 239, 248, 0.05) 100%
+    ); */
+    border-radius: 15px;
+    border: 1px solid rgb(151 151 151);
+}
+.welcome-offer-sec {
+    padding: 40px 0;
+    background: #0feff8;
+}
+
+.offer-box {
+    background: #3e0a73;
+    border-radius: 16px;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    color: #fff;
+}
+
+.offer-left {
+    width: 55%;
+}
+
+.offer-title {
+    font-size: 14px;
+    color: #d7c9ff;
+    margin-bottom: 10px;
+}
+
+.offer-heading {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+.icon-40 {
+    width: 50px;
+}
+.offer-heading span {
+    color: #ffcc33;
+}
+
+.offer-desc {
+    margin: 15px 0 25px;
+    opacity: 0.85;
+}
+.btn.btn-cyan {
+    background: #ffcd00;
+}
+.btn.btn-cyan:hover {
+    background: #ffcd00;
+    color: black;
+}
+.btn-offer {
+    background: #ff6e6e;
+    padding: 12px 25px;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.offer-right {
+    width: 45%;
+    text-align: right;
+}
+
+.gift-img {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.payment-section h5,
+.currency-section h5 {
+    font-size: 14px;
+    margin-bottom: 6px;
+    opacity: 0.85;
+}
+
+.payment-icons img,
+.currency-icons img {
+    width: 34px;
+    margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+    .offer-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .offer-left,
+    .offer-right {
+        width: 100%;
+        text-align: center;
+    }
+
+    .gift-img {
+        margin: 0 auto;
+    }
+}
+.currency-icon i {
+    font-size: 20px;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 50%;
+    color: #0a0a0a;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.currency-icon i:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 232, 163, 0.4);
+}
+
+
+.promotion-header {
+    background: rgb(97 97 97 / 18%);
+    /* background: #0a1c28; */
+    border: 1px solid rgb(151 151 151);
+}
+.promotion-header span {
+    background: #ffb648;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.promotion-header h5 {
+    margin-top: 15px;
+}
+.feature-card {
+    background-size: cover;
+    background-position: center;
+    /* height: 250px; */
+    height: 100%;
+    border-radius: 8px;
+}
+.feature-card p {
+    padding: 0px 5px;
+}
+
+
+.advantages {
+    /* background: #ffffff; */
+    background: rgb(97 97 97 / 18%);
+    /* border: 1px solid #e5e7eb; */
+    border: 1px solid rgb(151 151 151 / 68%);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.advantages:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    /* border-color: #d1d5db; */
+    border-color: rgb(32 42 57);
+}
+
+.advantages img {
+    max-width: 70px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.advantages:hover img {
+    transform: scale(1.1);
+}
+
+.advantages-content {
+    margin-top: 10px;
+}
+
+.advantages-heading {
+    font-size: 1.1rem;
+    font-weight: 600;
+    /* color: #1f2937; */
+    color: white;
+    margin-bottom: 8px;
+}
+
+.advantages-para {
+    font-size: 0.95rem;
+    /* color: #6b7280; */
+    color: #9198a7;
+    margin: 0;
+}
+
+
+/* Container */
+.game-card.newclr {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+/* 1. Image Styling - Apply blur ONLY here */
+.game-card.newclr
+.game-img-container {
+  width: 100%;
+  height: 100%;
+}
+.game-card.newclr
+.game-card-img {
+  width: 100%;
+  display: block;
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+/* HOVER: Blur image and zoom in slightly */
+.game-card.newclr
+.game-card:hover .game-card-img {
+  filter: blur(5px) brightness(0.5);
+  transform: scale(1.1);
+}
+
+/* 2. Play Button Styling (Always Clear) */
+.game-card.newclr
+.btn-play {
+  width: 55px;
+  height: 55px;
+  background: #ffffff;
+  color: #ffb648;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  z-index: 9999999999; /* Ensure it’s above everything */
+  opacity: 0;
+  transform: scale(0.6);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 15px rgba(255, 71, 87, 0.6);
+  pointer-events: auto; /* Ensure it’s clickable */
+  /* z-index: 9999999; */
+}
+
+/* HOVER: Show button and start the blink */
+
+.game-card.newclr:hover .btn-play {
+  opacity: 1;
+  
+  transform: scale(1);
+  animation: neon-blink 1.5s infinite;
+}
+
+/* 3. Neon Blink Effect */
+@keyframes neon-blink {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.8);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 71, 87, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+  }
+}
+
+
+/* Deep Dark Gaming Background */
+.bg-gaming-dark {
+  background-color: #0f172a;
+  border-bottom: 2px solid rgba(0, 210, 255, 0.2);
+  padding: 0.8rem 1rem;
+}
+
+/* Navbar Link Styling */
+.navbar-nav .nav-link {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Hover & Active States */
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-link.active {
+  color: #f9f9f9 !important;
+  text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+/* "Hot Games" Special Styling */
+.nav-hot {
+  color: #ff4757 !important;
+  animation: navPulse 2s infinite;
+}
+
+@keyframes navPulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* Underline Effect on Hover */
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #00d2ff;
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    text-align: center;
+    padding: 20px 0;
+  }
+  .navbar-nav .nav-link {
+    margin: 10px 0;
+  }
+  /* .d-flex {
+    justify-content: center;
+    padding-bottom: 10px;
+  } */
+} 

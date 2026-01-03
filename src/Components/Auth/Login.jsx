@@ -162,7 +162,7 @@ const LoginPage = () => {
       {/* <div className="circle1 position-absolute top-0"></div>
       <div className="circle2 position-absolute bottom-0"></div> */}
 
-      <div className="">
+      <div className="card-log bg-transparent p-0  "  >
         <Link to={routes.home}>
           <div
             className="logo d-flex justify-content-center mb-2"
@@ -171,13 +171,13 @@ const LoginPage = () => {
             <img
               src={Images.Favlogo}
               alt="Logo"
-              width="50%"
+              width="25%"
               style={{ objectFit: "contain" }}
             />
           </div>
         </Link>
 
-        <div className="p-3 d-flex justify-content-start flex-column card-log">
+        <div className="p-3 d-flex justify-content-start flex-column bg-white rounded">
           {giftNotice && (
             <div className="alert alert-light border border-warning shadow-sm d-flex align-items-center gap-0 py-0 px-1">
               <span style={{ fontSize: "2rem" }}>🎁</span>
