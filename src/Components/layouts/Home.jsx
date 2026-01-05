@@ -901,7 +901,7 @@ const promotions = [
                         highlightColor="#525252"
                       >
                         {/*----banner-slider----*/}
-                        <div className="position-relative my-2">
+                        <div className="position-relative my-2 mobile-none">
                           {" "}
                           {/* Added my-3 for spacing, adjust as needed */}
                           {isLoadingBanner ? (
@@ -932,7 +932,7 @@ const promotions = [
                             >
                               <SwiperSlide onClick={() => handleGameClick(Aviator)}>
                                 <img
-                                  src="assets/img/slider/bn3.png"
+                                  src="assets/img/slider/bn1.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 6"
                                 />
@@ -951,7 +951,7 @@ const promotions = [
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/bn1.png"
+                                  src="assets/img/slider/bn7.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 6"
                                 />
@@ -962,7 +962,7 @@ const promotions = [
                                 }
                               >
                                 <img
-                                  src="assets/img/slider/bn4.png"
+                                  src="assets/img/slider/bn3.png"
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 2"
                                 />
@@ -994,7 +994,7 @@ const promotions = [
                                 />
                               </SwiperSlide>
 
-                              <SwiperSlide
+                              {/* <SwiperSlide
                                 onClick={() =>
                                   navigate(`/filtered-games?search=blackjack`)
                                 }
@@ -1004,7 +1004,7 @@ const promotions = [
                                   className="w-100 rounded-2"
                                   alt="Gaming Banner Slide 6"
                                 />
-                              </SwiperSlide>
+                              </SwiperSlide> */}
 
                               <SwiperSlide
                                 onClick={() =>
@@ -1035,12 +1035,129 @@ const promotions = [
                         {/*-------banner-end----*/}
                       </SkeletonTheme>
                       {/*-------banner-end----*/}
+
+
+                       {/*----banner-slider----*/}
+                      <SkeletonTheme
+                        baseColor="#313131"
+                        highlightColor="#525252"
+                      >
+                        {/*----banner-slider----*/}
+                        <div className="position-relative my-2 lap-none">
+                          {" "}
+                          {/* Added my-3 for spacing, adjust as needed */}
+                          {isLoadingBanner ? (
+                            // Skeleton for the banner slider
+                            <Skeleton
+                              height={180}
+                              className="w-100 rounded-2"
+                            /> // Adjust height to match your banner
+                          ) : (
+                            <Swiper
+                              className="mySwiper"
+                              modules={[Navigation, Pagination, Autoplay]}
+                              spaceBetween={15}
+                              slidesPerView={1}
+                              pagination={{ clickable: true }}
+                              autoplay={{
+                                delay: 3000,
+                                disableOnInteraction: false,
+                              }} // Added disableOnInteraction for better UX
+                              breakpoints={{
+                                768: {
+                                  slidesPerView: 2, // Tablet view
+                                },
+                                1024: {
+                                  slidesPerView: 1, // Laptop/Desktop view
+                                },
+                              }}
+                            >
+                              <SwiperSlide onClick={() => handleGameClick(Aviator)}>
+                                <img
+                                  src="assets/img/slider/mb1.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 6"
+                                />
+                              </SwiperSlide>
+
+                               <SwiperSlide onClick={() => handleGameClick(LUCKY6_GAME)}>
+                                <img
+                                  src="assets/img/slider/mb2.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 5"
+                                />
+                              </SwiperSlide>
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=card`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/mb3.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 6"
+                                />
+                              </SwiperSlide>
+                              <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=slots`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/mb4.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 2"
+                                />
+                              </SwiperSlide>
+                               <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=slots`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/mb5.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 2"
+                                />
+                              </SwiperSlide>
+                               <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=slots`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/mb6.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 2"
+                                />
+                              </SwiperSlide>
+                               <SwiperSlide
+                                onClick={() =>
+                                  navigate(`/filtered-games?search=slots`)
+                                }
+                              >
+                                <img
+                                  src="assets/img/slider/mb7.png"
+                                  className="w-100 rounded-2"
+                                  alt="Gaming Banner Slide 2"
+                                />
+                              </SwiperSlide>
+
+                            
+
+                            
+                            </Swiper>
+                          )}
+                        </div>
+                        {/*-------banner-end----*/}
+                      </SkeletonTheme>
+                      {/*-------banner-end----*/}
                       {/* home end */}
 
                       {/* HOT GAMES */}
                       {/* HOT GAMES */}
                       <SkeletonTheme
-                        baseColor="#313131"
+                        baseColo  r="#313131"
                         highlightColor="#525252"
                       >
                         {/* HOT GAMES */}
@@ -1060,7 +1177,7 @@ const promotions = [
                               ) : (
                                 <>
                                   <img
-                                    src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
+                                    src="https://uxwing.com/wp-content/themes/uxwing/download/e-commerce-currency-shopping/hot-icon.png"
                                     width="27"
                                     alt="Games Type Icon"
                                   />
@@ -1351,665 +1468,96 @@ const promotions = [
                       </div>
 
 
-                       {/* Games Types */}
+                    
 
-                      <div className="game-types-section  tabd-none">
-                        {/* Games Type Header */}
-                        <div className="top-matches-title d-flex align-items-center justify-content-between my-2 ">
-                          <div className="d-flex">
-                            {/* Skeleton for icon */}
-                            {isLoadingTypes ? (
-                              <Skeleton
-                                circle
-                                height={27}
-                                width={27}
-                                baseColor="#313131" // Darker grey for the base
-                                highlightColor="#525252"
-                              />
-                            ) : (
-                              <img
-                                src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
-                                width="27"
-                                alt="Games Type Icon"
-                              />
-                            )}
-                            {/* Skeleton for title */}
-                            {isLoadingTypes ? (
-                              <Skeleton
-                                height={20}
-                                width={100}
-                                className="ms-2"
-                                baseColor="#313131" // Darker grey for the base
-                                highlightColor="#525252"
-                              />
-                            ) : (
-                              <h5 className="m-0 ms-2">Games Type</h5>
-                            )}
-                          </div>
-                          {/* <div>
-                            <Link to={routes.games.all}>
-                              <span className="text-white fs-13 fw-500 right_heading">
-                                All <i className="ri-arrow-right-s-line" />
-                              </span>
-                            </Link>
-                          </div> */}
-                        </div>
+                      
 
-                        {/* SkeletonTheme for consistent skeleton colors */}
-                        <SkeletonTheme
-                          baseColor="#313131"
-                          highlightColor="#525252"
-                        >
-                          {isLoadingTypes ? (
-                            // Skeleton loading state for game type cards
-                            <>
-                              <div className="d-flex gap-2">
-                                {Array.from({ length: 2 }).map(
-                                  (
-                                    _,
-                                    index // 2 cards in the first row
-                                  ) => (
-                                    <div
-                                      key={`skeleton-1-${index}`}
-                                      className="card bg-cardtrans p-1"
-                                      style={{ flex: "1 1 auto" }}
-                                    >
-                                      <div className="flex-column d-flex">
-                                        <Skeleton
-                                          height={15}
-                                          width="60%"
-                                          className="mb-1"
-                                        />{" "}
-                                        {/* Text skeleton */}
-                                        <Skeleton
-                                          height={50}
-                                          width="100%"
-                                        />{" "}
-                                        {/* Image skeleton */}
-                                      </div>
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                              <div className="mt-2">
-                                <div className="d-flex gap-2">
-                                  {Array.from({ length: 3 }).map(
-                                    (
-                                      _,
-                                      index // 3 cards in the second row
-                                    ) => (
-                                      <div
-                                        key={`skeleton-2-${index}`}
-                                        className="card bg-cardtrans p-1"
-                                        style={{ flex: "1 1 auto" }}
-                                      >
-                                        <div className="flex-column d-flex">
-                                          <Skeleton
-                                            height={15}
-                                            width="60%"
-                                            className="mb-1"
-                                          />
-                                          <Skeleton height={50} width="100%" />
-                                        </div>
-                                      </div>
-                                    )
-                                  )}
-                                </div>
-                              </div>
-                              <div className="d-flex gap-2 mt-2">
-                                {Array.from({ length: 2 }).map(
-                                  (
-                                    _,
-                                    index // 2 cards in the third row
-                                  ) => (
-                                    <div
-                                      key={`skeleton-3-${index}`}
-                                      className="card bg-cardtrans p-1"
-                                      style={{ flex: "1 1 auto" }}
-                                    >
-                                      <div className="flex-column d-flex">
-                                        <Skeleton
-                                          height={15}
-                                          width="60%"
-                                          className="mb-1"
-                                        />
-                                        <Skeleton height={50} width="100%" />
-                                      </div>
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          ) : (
-                            // Actual game type cards when loaded
-                            <>
-                              <div className="d-flex gap-2">
-                                {gameTypes.slice(0, 2).map(
-                                  (
-                                    game // First row: Casino, Roulette
-                                  ) => (
-                                    <div
-                                      key={game.type} // Using game.type as key since it's unique
-                                      className="card bg-cardtrans p-1"
-                                      onClick={() =>
-                                        navigate(
-                                          `/filtered-games?type=${game.type}`
-                                        )
-                                      }
-                                      role="button"
-                                      tabIndex="0"
-                                      onKeyPress={(e) => {
-                                        if (
-                                          e.key === "Enter" ||
-                                          e.key === " "
-                                        ) {
-                                          // Added spacebar for accessibility
-                                          navigate(
-                                            `/filtered-games?search=${game.type}`
-                                          );
-                                        }
-                                      }}
-                                    >
-                                      <div className="flex-column d-flex">
-                                        <span className="text-white fw-500 fs-13">
-                                          {game.name}
-                                        </span>
-                                        <img
-                                          src={game.imgSrc}
-                                          alt={game.name}
-                                        />
-                                      </div>
-                                    </div>
-                                  )
-                                )}
-                              </div>
-
-                              <div className="mt-2">
-                                <div className="d-flex gap-2">
-                                  {gameTypes.slice(2, 5).map(
-                                    (
-                                      game // Second row: Crash, Lottery, Instant
-                                    ) => (
-                                      <div
-                                        key={game.type}
-                                        className="card bg-cardtrans p-1"
-                                        onClick={() =>
-                                          navigate(
-                                            `/filtered-games?search=${game.type}`
-                                          )
-                                        }
-                                        role="button"
-                                        tabIndex="0"
-                                        onKeyPress={(e) => {
-                                          if (
-                                            e.key === "Enter" ||
-                                            e.key === " "
-                                          ) {
-                                            navigate(
-                                              `/filtered-games?search=${game.type}`
-                                            );
-                                          }
-                                        }}
-                                      >
-                                        <div className="flex-column d-flex">
-                                          <span className="text-white fw-500 fs-13">
-                                            {game.name}
-                                          </span>
-                                          <img
-                                            src={game.imgSrc}
-                                            alt={game.name}
-                                          />
-                                        </div>
-                                      </div>
-                                    )
-                                  )}
-                                </div>
-                              </div>
-
-                              <div className="d-flex gap-2 mt-2">
-                                {gameTypes.slice(5, 7).map(
-                                  (
-                                    game // Third row: Slots, Dice
-                                  ) => (
-                                    <div
-                                      key={game.type}
-                                      className="card bg-cardtrans p-1"
-                                      onClick={() =>
-                                        navigate(
-                                          `/filtered-games?search=${game.type}`
-                                        )
-                                      }
-                                      role="button"
-                                      tabIndex="0"
-                                      onKeyPress={(e) => {
-                                        if (
-                                          e.key === "Enter" ||
-                                          e.key === " "
-                                        ) {
-                                          navigate(
-                                            `/filtered-games?search=${game.type}`
-                                          );
-                                        }
-                                      }}
-                                    >
-                                      <div className="flex-column d-flex">
-                                        <span className="text-white fw-500 fs-13">
-                                          {game.name}
-                                        </span>
-                                        <img
-                                          src={game.imgSrc}
-                                          alt={game.name}
-                                        />
-                                      </div>
-                                    </div>
-                                  )
-                                )}
-                              </div>
-                            </>
-                          )}
-                        </SkeletonTheme>
-                      </div>
-
-                      {/* Games Types */}
-
-                      <>
-                        {/* Games Types */}
-                        <div className="mobile-none">
-                          <div className="top-matches-title d-flex align-items-center justify-content-between   my-3">
-                            <div className="d-flex">
-                              <img
-                                src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
-                                width="27"
-                                alt="Games Type Icon"
-                              />
-                              <h5 className="m-0 ms-2">Games Type</h5>
-                            </div>
-                            {/* <div>
-                              <a href="./Allgames.html">
-                                <span className="text-white fs-13 fw-500 right_heading">
-                                  All <i className="ri-arrow-right-s-line" />
-                                </span>
-                              </a>
-                            </div> */}
-                          </div>
-                          <div className="d-flex gap-1 mb-3">
-                            <div className="col-4 ">
-                              <div
-                                className="card bg-cardtrans p-1"
-                                style={{
-                                  backgroundImage:
-                                    "linear-gradient(to left, rgb(255 70 42 / 30%), transparent 75%) !important",
-                                }}
-                              >
-                                <div
-                                  className="flex-column d-flex"
-                                  onClick={() =>
-                                    navigate(`/filtered-games?type=card`)
-                                  }
-                                >
-                                  <span className="text-white fw-500 fs-13  py-2 px-1">
-                                    Casino
-                                  </span>
-                                  <img
-                                    src="assets/img/casino.png"
-                                    alt=""
-                                    srcSet=""
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="col-4 ">
-                             <div className="col-12 ">
-                              <div className="d-flex flex-wrap">
-                                <div className="col-6 mb-2">
-                                  <div
-                                    className="card bg-cardtrans p-1"
-                                    style={{
-                                      backgroundImage:
-                                        "linear-gradient(to left, rgb(181 114 28 / 30%), transparent 60%) !important",
-                                    }}
-                                  >
-                                    <div
-                                      className="flex-column d-flex"
-                                      onClick={() =>
-                                        navigate(
-                                          `/filtered-games?search=lottery`
-                                        )
-                                      }
-                                    >
-                                      <span className="text-white fw-500 fs-13 py-2 px-1">
-                                        Lottery
-                                      </span>
-                                      <img
-                                        src="assets/img/lottery.png
-                  "
-                                        alt=""
-                                        srcSet=""
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-6 mb-2">
-                                  <div
-                                    className="card bg-cardtrans p-1"
-                                    style={{
-                                      backgroundImage:
-                                        "linear-gradient(to left, rgb(123 64 14 / 49%), transparent 75%) !important",
-                                    }}
-                                  >
-                                    <div
-                                      className="flex-column d-flex"
-                                      onClick={() =>
-                                        navigate(`/filtered-games?search=slots`)
-                                      }
-                                    >
-                                      <span className="text-white fw-500 fs-13  py-2 px-1">
-                                        Slot
-                                      </span>
-                                      <img
-                                        src="assets/img/horse.png"
-                                        alt=""
-                                        srcSet=""
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-6 ">
-                                  <div
-                                    className="card bg-cardtrans p-1"
-                                    style={{
-                                      backgroundImage:
-                                        "linear-gradient(to left, rgb(190 191 183 / 27%), transparent 75%) !important",
-                                    }}
-                                    onClick={() =>
-                                      navigate(`/filtered-games?search=dice`)
-                                    }
-                                  >
-                                    <div className="flex-column d-flex">
-                                      <span className="text-white fw-500 fs-13  py-2 px-1">
-                                        Dice
-                                      </span>
-                                      <img
-                                        src="assets/img/up.png"
-                                        alt=""
-                                        srcSet=""
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-6">
-                                  <div
-                                    className="card bg-cardtrans p-1"
-                                    style={{
-                                      backgroundImage:
-                                        "linear-gradient(to left, rgb(123 64 14 / 49%), transparent 75%) !important",
-                                    }}
-                                    onClick={() =>
-                                      navigate(`/filtered-games?search=bingo`)
-                                    }
-                                  >
-                                    <div className="flex-column d-flex">
-                                      <span className="text-white fw-500 fs-13  py-2 px-1">
-                                        Bingo
-                                      </span>
-                                      <img
-                                        src="assets/img/bingo.png
-            "
-                                        alt=""
-                                        srcSet=""
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            </div>
-                             <div className="col-4 ">
-                              <div
-                                className="card bg-cardtrans p-1"
-                                style={{
-                                  backgroundImage:
-                                    "linear-gradient(to left, rgb(35 105 157 / 44%), transparent 75%) !important",
-                                }}
-                              >
-                                <div
-                                  className="flex-column d-flex"
-                                  onClick={() =>
-                                    navigate(`/filtered-games?search=instant`)
-                                  }
-                                >
-                                  <span className="text-white fw-500 fs-13  py-2 px-1">
-                                    Instant
-                                  </span>
-                                  <img
-                                    src="assets/img/sports.png"
-                                    alt=""
-                                    srcSet=""
-                                  />
-                                </div>
-                              </div>
-                            </div>
-
-                          </div>
-                           
-                          
-                          </div>
-                        {/* </div> */}
-                      </>
-
-
-
-                                                    <div className="">
-                                                    <div className="top-matches-title d-flex align-items-center justify-content-between   my-3">
-                                                        <div className="d-flex">
-                                                            <img
-                                                                src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
-                                                                width="27"
-                                                                alt="Games Type Icon"
-                                                            />
-                                                            <h5 className="m-0 ms-2">Support Terms</h5>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="row g-3">
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/bonuses.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Level-up Bonuses
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Level up for bigger rewards
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/cashback.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Enhanced Cashback
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Get more with every bet you make
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/game-access.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Early Game Access
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Be the first to try the newest games
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/gifts.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Receive Gifts
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Enjoy frequent gifts and special treatment
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/giveaways.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Luxury Giveaways
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Enter raffles and win some truly luxurious
-                                                                        prizes
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/support.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Priority Support
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Skip the queues and get back to your games fast
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/tournaments.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">
-                                                                        Exclusive Tournaments
-                                                                    </h5>
-                                                                    <p className="advantages-para">
-                                                                        Compete against the best of the best in VIP-only
-                                                                        events
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="col-lg-3 col-md-6">
-                                                            <div className="advantages">
-                                                                <div className="">
-                                                                    <img
-                                                                        src="assets/img/banner/fast-payout.png"
-                                                                        alt=""
-                                                                        srcSet=""
-                                                                        className="img-fluid"
-                                                                    />
-                                                                </div>
-                                                                <div className="advantages-content">
-                                                                    <h5 className="advantages-heading">Fast Payouts</h5>
-                                                                    <p className="advantages-para">
-                                                                        Access your winnings faster than ever
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-
-                      {/* hot games */}
 
                      
-                      {/* games types end */}
-                      {/* games types end */}
 
-                      {/* game list starts */}
-                      {/* <div className="game-grid">
-          {filteredGames.length > 0 ? (
-            filteredGames.map((game) => (
-              <div key={game.uuid} className="game-card">
-                <img src={game.image} alt={game.name} />
-                <p className="text-white">{game.name}</p>
-              </div>
-            ))
-          ) : (
-            <>
-              <div className="d-flex flex-column align-items-center mt-5">
-                <img
-                  src="assets/img/notification/img_2.png"
-                  alt="unauth"
-                  className="w-75"
-                />
-                <p className="text-white text-center">No games available.</p>
-              </div>
-            </>
-          )}
-        </div> */}
-                      {/* game list Ends */}
+                     {/* Games Types */}
+<div className="games-type-section container-fluid p-0">
+  <div className="top-matches-title d-flex align-items-center justify-content-between my-3">
+    <div className="d-flex align-items-center">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
+        width="27"
+        alt="Games Type Icon"
+      />
+      <h5 className="m-0 ms-2 text-white">Games Type</h5>
+    </div>
+  </div>
 
-                      {/* {{base_url}}/jiboomba/all-games?type=dice */}
-                      {/* all games part */}
+  <div className="container-xl p-0">
+    {/* Top Cards: Stack on mobile (col-12), side-by-side on desktop (col-md-6) */}
+    <div className="row g-3 mb-3">
+      {/* Casino */}
+      <div className="col-12 col-md-6">
+        <div
+          className="gnd-card p-4 h-100"
+          style={{
+            backgroundImage: "linear-gradient(to left, rgb(79 13 77 / 83%), transparent 80%)"
+          }}
+          onClick={() => navigate(`/filtered-games?type=card`)}
+        >
+          <img src="assets/img/11.png" alt="Casino" className="gnd-img-main" />
+          <div className="position-relative h-100 d-flex flex-column text-white">
+            <div className="d-flex align-items-center gap-2 mb-2">
+              <div className="gnd-icon-dot bg-success bg-opacity-25" />
+              <h2 className="fw-extrabold mb-0 fs-4 fs-md-2">Casino</h2>
+            </div>
+            <p className="mt-auto text-white fw-semibold fs-14">
+              Dive into our in-house games, live casino and slots
+            </p>
+          </div>
+        </div>
+      </div>
+      {/* Sports */}
+      <div className="col-12 col-md-6">
+        <div
+          className="gnd-card p-4 h-100"
+          onClick={() => navigate(`/filtered-games?search=dice`)}
+        >
+          <img src="assets/img/12.png" alt="Sports" className="gnd-img-main" />
+          <div className="position-relative h-100 d-flex flex-column text-white">
+            <div className="d-flex align-items-center gap-2 mb-2">
+              <div className="gnd-icon-dot" />
+              <h2 className="fw-extrabold mb-0 text-uppercase fs-4 fs-md-2">Sports</h2>
+            </div>
+            <p className="mt-auto text-white fw-semibold fs-14">
+              Bet on Football, Cricket &amp; over 80 sports!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Bottom Grid: 2 columns on mobile, 3 on tablet, auto on desktop */}
+    <div className="row g-2 g-md-3">
+      {[
+        { name: "Instant", img: "13.png", link: "instant" },
+        { name: "Slot", img: "14.png", link: "slots" },
+        { name: "Aviator", img: "18.png", link: "lottery" },
+        { name: "Lottery", img: "17.png", link: "lottery" },
+        { name: "Bingo", img: "16.png", link: "bingo" },
+      ].map((game, index) => (
+        <div className="col-6 col-sm-4 col-md" key={index}>
+          <div
+            className="gnd-card gnd-card--small p-3"
+            onClick={() => navigate(`/filtered-games?search=${game.link}`)}
+          >
+            <img src={`assets/img/${game.img}`} alt={game.name} />
+            <h6 className="position-relative text-white fw-extrabold mb-0 fs-13">
+              {game.name}
+            </h6>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+                        {/* all games part */}
                       <div>
                         {/* All Games Section Header */}
                         <div className="top-matches-title d-flex align-items-center justify-content-between my-3">
@@ -2166,6 +1714,220 @@ const promotions = [
                       </div>
                       {/* all games */}
 
+
+
+{/* support section */}
+                                                    <div className="">
+                                                    <div className="top-matches-title d-flex align-items-center justify-content-between   my-3">
+                                                        <div className="d-flex">
+                                                            <img
+                                                                src="https://cdn-icons-png.flaticon.com/512/12800/12800987.png"
+                                                                width="27"
+                                                                alt="Games Type Icon"
+                                                            />
+                                                            <h5 className="m-0 ms-2">Support Terms</h5>
+                                                        </div>
+                                                    </div>
+
+                                                    <div className="row g-3">
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/img_icon_1.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Level-up Bonuses
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Level up for bigger rewards
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/img_icon_2.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Enhanced Cashback
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Get more with every bet you make
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/img_icon_3.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Early Game Access
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Be the first to try the newest games
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner//img_icon_4.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Receive Gifts
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Enjoy frequent gifts and special treatment
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/img_icon_5.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Luxury Giveaways
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Enter raffles and win some truly luxurious
+                                                                        prizes
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/img_icon_6.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Priority Support
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Skip the queues and get back to your games fast
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/img_icon_7.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">
+                                                                        Exclusive Tournaments
+                                                                    </h5>
+                                                                    <p className="advantages-para">
+                                                                        Compete against the best of the best in VIP-only
+                                                                        events
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="col-lg-3 col-md-6">
+                                                            <div className="advantages">
+                                                                <div className="">
+                                                                    <img
+                                                                        src="assets/img/banner/img_icon_8.png"
+                                                                        alt=""
+                                                                        srcSet=""
+                                                                        className="img-fluid"
+                                                                    />
+                                                                </div>
+                                                                <div className="advantages-content">
+                                                                    <h5 className="advantages-heading">Fast Payouts</h5>
+                                                                    <p className="advantages-para">
+                                                                        Access your winnings faster than ever
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                      {/* hot games */}
+
+                     
+                      {/* games types end */}
+                      {/* games types end */}
+
+                      {/* game list starts */}
+                      {/* <div className="game-grid">
+          {filteredGames.length > 0 ? (
+            filteredGames.map((game) => (
+              <div key={game.uuid} className="game-card">
+                <img src={game.image} alt={game.name} />
+                <p className="text-white">{game.name}</p>
+              </div>
+            ))
+          ) : (
+            <>
+              <div className="d-flex flex-column align-items-center mt-5">
+                <img
+                  src="assets/img/notification/img_2.png"
+                  alt="unauth"
+                  className="w-75"
+                />
+                <p className="text-white text-center">No games available.</p>
+              </div>
+            </>
+          )}
+        </div> */}
+                      {/* game list Ends */}
+
+                      {/* {{base_url}}/jiboomba/all-games?type=dice */}
+                    
                       {/* Marquee runing */}
 
 
@@ -2174,7 +1936,7 @@ const promotions = [
                                                     <div className="container">
                                                         <div className="row align-items-center bg-gradient-box text-white p-4 rounded-4">
                                                             {/* LEFT SIDE */}
-                                                            <div className="col-lg-6 mb-4 ">
+                                                            <div className="col-lg-6 mb-4 p-0">
                                                                 <h4 className="small mb-2">WELCOME BONUS OFFER</h4>
 
                                                                 <h2 className="fw-bold display-6">
@@ -2196,16 +1958,18 @@ const promotions = [
 
                                                             {/* RIGHT SIDE */}
                                                             <div className="col-lg-6 text-start text-md-start text-lg-end">
-                                                                <i
+                                                                {/* <i
                                                                     className="fa-solid fa-gift mb-3"
                                                                     style={{
                                                                         fontSize: "80px",
                                                                         color: "#ffffffff",
                                                                     }}
-                                                                ></i>
+                                                                ></i> */}
+
+                                                                <img src="assets/img/bingo.png" alt="" className="w-65 image-gift"/>
 
                                                                 {/* Payment Method */}
-                                                                <div className="mt-3">
+                                                                {/* <div className="mt-3">
                                                                     <h6 className="mb-3">Payment Method</h6>
 
                                                                     <div className="d-flex justify-content-start justify-content-lg-end overflow-hidden gap-2 mt-2">
@@ -2245,36 +2009,10 @@ const promotions = [
                                                                             alt=""
                                                                         />
                                                                     </div>
-                                                                </div>
+                                                                </div> */}
 
                                                                 {/* Accepted Currency */}
-                                                                <div className="mt-4">
-                                                                    <h6 className="mb-3">Accepted Currency</h6>
-
-                                                                    <div className="currency-icon d-flex justify-content-start justify-content-lg-end gap-2 mt-2">
-                                                                        <i
-                                                                            className="fi fi-rr-coin icon-30"
-                                                                            title="Bitcoin"
-                                                                        ></i>
-                                                                        <i
-                                                                            className="fi fi-rr-diamond icon-30"
-                                                                            title="Ethereum"
-                                                                        ></i>
-                                                                        {/* <i
-                                      className="fi fi-rr-dollar-circle icon-30"
-                                      title="USDT"
-                                    ></i> */}
-
-                                                                        <i
-                                                                            className="fi fi-rr-exchange icon-30"
-                                                                            title="Litecoin"
-                                                                        ></i>
-                                                                        <i
-                                                                            className="fi fi-rr-hexagon icon-30"
-                                                                            title="BNB"
-                                                                        ></i>
-                                                                    </div>
-                                                                </div>
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>

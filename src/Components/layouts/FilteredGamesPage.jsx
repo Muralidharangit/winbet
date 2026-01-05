@@ -559,16 +559,19 @@ const FilteredGamesPage = () => {
                               onClick={() => handleGameClick(game)}
                             >
                               <div className="game-card-wrapper rounded-2 new-cardclr mt-2 hover-group">
-                                <div className="game-card position-relative p-0 m-0 overflow-hidden">
-                                  <img
-                                    src={game.image}
-                                    className="game-card-img"
-                                    alt={game.name}
-                                  />
-                                </div>
-                                <div className="btn-play position-absolute top-50 start-50 translate-middle">
-                                  <i className="fa-solid fa-play" />
-                                </div>
+                                <div className="game-card newclr">
+  <div className="game-img-container">
+    <img
+      src={game.image || "assets/img/play_now.png"}
+      className="game-card-img"
+      alt={game.name}
+    />
+  </div>
+
+  <div className="btn-play position-absolute top-50 start-50 translate-middle">
+    <i className="fa-solid fa-play"></i>
+  </div>
+</div>
                               </div>
                             </div>
                           ))

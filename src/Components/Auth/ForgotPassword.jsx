@@ -60,6 +60,7 @@ const ForgotPassword = () => {
             alt="Logo"
             width="50%"
             style={{ objectFit: "contain" }}
+            className="line-br"
           />
         </div>
       </Link>
@@ -119,7 +120,7 @@ const ForgotPassword = () => {
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Reset Password"}
-                      <i className="ri-send-plane-line text-white fs-20 ms-2" />
+                      <i className="ri-send-plane-line text-black fs-20 ms-2" />
                     </button>
                   </Form>
                 )}

@@ -1502,22 +1502,23 @@ const SearchTopGames = () => {
                                     }}
                                   >
                                     <div
-                                      className="game-card-wrapper rounded-2 new-cardclr mt-2 hover-group"
+                                      className="game-card-wrapper rounded-2 mt-2 h"
                                       onClick={() => handleGameClick(game)}
                                     >
-                                      <div className="game-card position-relative p-0 m-0 overflow-hidden">
-                                        <img
-                                          src={
-                                            game.image ||
-                                            "/assets/img/placeholder.png"
-                                          }
-                                          className="w-100 m-0"
-                                          alt={game.name}
-                                        />
-                                      </div>
-                                      <div className="btn-play position-absolute top-50 start-50 translate-middle">
-                                        <i className="fa-solid fa-play"></i>
-                                      </div>
+                                        <div className="game-card newclr">
+  <div className="game-img-container">
+    <img
+      src={game.image || "assets/img/play_now.png"}
+      className="game-card-img"
+      alt={game.name}
+    />
+  </div>
+
+  <div className="btn-play position-absolute top-50 start-50 translate-middle">
+    <i className="fa-solid fa-play"></i>
+  </div>
+</div>
+                                     
                                     </div>
                                   </motion.div>
                                 ))}

@@ -165,7 +165,7 @@ const LoginPage = () => {
       <div className="card-log bg-transparent p-0  "  >
         <Link to={routes.home}>
           <div
-            className="logo d-flex justify-content-center mb-2"
+            className="logo d-flex justify-content-center  "
             style={{ "max-width": "400px" }}
           >
             <img
@@ -173,6 +173,8 @@ const LoginPage = () => {
               alt="Logo"
               width="25%"
               style={{ objectFit: "contain" }}
+
+              className="line-br"
             />
           </div>
         </Link>
@@ -297,7 +299,7 @@ const LoginPage = () => {
 
                 <button
                   type="submit"
-                  className="btn btn-login w-100 mt-2"
+                  className="btn btn-login w-100 mt-2 text-black"
                   disabled={formik.isSubmitting} // ✅ disable when submitting
                 >
                   {formik.isSubmitting

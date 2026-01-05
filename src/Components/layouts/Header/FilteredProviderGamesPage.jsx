@@ -370,30 +370,22 @@ const FilteredProviderGamesPage = () => {
                           key={game.uuid}
                         >
                           <div
-                            className="game-card-wrapper rounded-2 new-cardclr mt-2 hover-group"
+                            className="game-card-wrapper rounded-2 new-cardclr mt-2"
                             onClick={() => handleGameClick(game)}
                           >
-                            <div className="game-card position-relative p-0 m-0 overflow-hidden">
-                              <img
-                                src={
-                                  game.image && game.image !== ""
-                                    ? game.image
-                                    : "assets/img/play_now.png"
-                                }
-                                className="w-100 m-0"
-                                alt={game.name}
-                              />
+                            <div className="game-card newclr">
+  <div className="game-img-container">
+    <img
+      src={game.image || "assets/img/play_now.png"}
+      className="game-card-img"
+      alt={game.name}
+    />
+  </div>
 
-                              {/* <h3>{game.name}</h3> */}
-                              {/* <div className="d-flex flex-column text-white text-center py-2 px-1">
-                          <span className="fs-12 fw-bold text-truncate">
-                            {game.name}
-                          </span>
-                        </div> */}
-                            </div>
-                            <div className="btn-play position-absolute top-50 start-50 translate-middle">
-                              <i className="fa-solid fa-play"></i>
-                            </div>
+  <div className="btn-play position-absolute top-50 start-50 translate-middle">
+    <i className="fa-solid fa-play"></i>
+  </div>
+</div>
                           </div>
                         </div>
                       ))

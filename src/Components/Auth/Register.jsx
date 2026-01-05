@@ -199,7 +199,7 @@ const Register = () => {
       <section className="container black-red">
         <Link to={routes.home}>
           <div className="logo d-flex justify-content-center mb-2">
-            <img src={Images.Favlogo} alt="Logo" width="50%" />
+            <img src={Images.Favlogo} alt="Logo" width="50%" className="line-br"/>
           </div>
         </Link>
 
@@ -380,11 +380,11 @@ const Register = () => {
                       {/*   Submit Button */}
                       <button
                         type="submit"
-                        className="btn btn-login w-100 my-3"
+                        className="btn btn-login w-100 my-3 text-black"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? "Signing up..." : "Sign up"}
-                        <i className="ri-expand-right-line text-white fs-20 ms-2" />
+                        <i className="ri-expand-right-line text-black fs-20 ms-2" />
                       </button>
                     </Form>
                   )}
@@ -559,7 +559,7 @@ const Register = () => {
                     {/*   Submit Button */}
                     <button
                       type="submit"
-                      className="btn btn-login w-100 my-3"
+                      className="btn btn-login w-100 my-3 text-black"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Signing up..." : "Sign up"}
