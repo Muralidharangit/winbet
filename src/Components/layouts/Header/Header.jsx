@@ -455,7 +455,7 @@ const StickyHeader = ({ onToggleSidebar }) => {
             <Link to={routes.games.all}>
               <button
                 type="button"
-                className="btn swiper-scrollbar-drag w-100 bgbody-color text-white rounded-pill fs-15 fw-500 text-black"
+                className="btn swiper-scrollbar-drag w-100 bgbody-color  rounded-pill fs-15 fw-500 text-black"
               >
                 All Games
               </button>
@@ -513,16 +513,19 @@ const StickyHeader = ({ onToggleSidebar }) => {
                 <NavLink to="/" className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/games" className="nav-link">All Games</NavLink>
+                <NavLink to={routes.games.all} className="nav-link"
+                >All Games</NavLink>
               </li>
+             
               <li className="nav-item">
+                <NavLink to="/filtered-games?type=card" className="nav-link">Live Casino</NavLink>
+              </li>
+
+              <li className="nav-item">
+                <NavLink to="/filtered-games?type=crash" className="nav-link">Crash Games</NavLink>
+              </li>
+               <li className="nav-item">
                 <NavLink to="/bonus" className="nav-link highlight">Bonus</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/hot-games" className="nav-link">Hot Games</NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/terms" className="nav-link">Terms & Conditions</NavLink>
               </li>
             </ul>
           </div>
@@ -579,7 +582,7 @@ const StickyHeader = ({ onToggleSidebar }) => {
 
                             {portalSettings?.auto_deposit === 1 ? (
                               <button
-                                className="btn  btn-index w-100 deposit-btn"
+                                className="btn  btn-index w-100 deposit-btn text-black"
                                 onClick={() =>
                                   handleSecureRoute(
                                     routes.transactions.paymentMethod

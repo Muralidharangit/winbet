@@ -325,7 +325,7 @@ const LoginPage = () => {
                 <div className="input-groups mb-4">
                   <label
                     htmlFor="user_mobile"
-                    className="form-label text-white"
+                    className="form-label "
                   >
                     Mobile
                   </label>
@@ -357,7 +357,7 @@ const LoginPage = () => {
                     : "Login"}
                 </button>
 
-                <div class="login-card__divider">Or With</div>
+                <div class="login-card__divider text-center">Or With</div>
 
                 {/* Register Link */}
                 <div className="text-center text-gray mt-3">

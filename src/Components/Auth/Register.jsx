@@ -82,26 +82,26 @@ const Register = () => {
   const otpValidationSchema = Yup.object({
     username: Yup.string()
       .required("Name is required")
-      .test("unique-username", "Checking...", async function (value) {
-        if (!value) return false;
+      // .test("unique-username", "Checking...", async function (value) {
+      //   if (!value) return false;
 
-        try {
-          const res = await checkPlayerName(value);
+      //   try {
+      //     const res = await checkPlayerName(value);
 
-          if (res.status === "success") return true;
+      //     if (res.status === "success") return true;
 
-          return this.createError({
-            message: res.msg || "Username already taken",
-          });
-        } catch (err) {
-          // ✅ Handle 409 error gracefully
-          const message =
-            err?.response?.data?.msg ||
-            "Something went wrong while checking name.";
-          return this.createError({ message });
-        }
-      }),
-    mobile: Yup.string()
+      //     return this.createError({
+      //       message: res.msg || "Username already taken",
+      //     });
+      //   } catch (err) {
+      //     // ✅ Handle 409 error gracefully
+      //     const message =
+      //       err?.response?.data?.msg ||
+      //       "Something went wrong while checking name.";
+      //     return this.createError({ message });
+      //   }
+      // }),
+    ,mobile: Yup.string()
       .matches(/^\d{10}$/, "Enter a valid 10-digit mobile number")
       .required("Mobile number is required"),
     agreement: Yup.boolean().oneOf([true], "You must accept the terms"),
@@ -411,7 +411,7 @@ const Register = () => {
                     <div className="input-groups mb-4">
                       <label
                         htmlFor="username"
-                        className="form-label text-white"
+                        className="form-label "
                       >
                         Username
                       </label>
@@ -430,7 +430,7 @@ const Register = () => {
 
                     {/*   Mobile Number Input */}
                     <div className="input-groups mb-4">
-                      <label htmlFor="mobile" className="form-label text-white">
+                      <label htmlFor="mobile" className="form-label">
                         Mobile No
                       </label>
                       <Field
